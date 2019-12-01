@@ -10,8 +10,8 @@ module.exports = {
   },
   findUser: function(req, res) {
     db.User
-      .find({$or:[{ username: req.body.username}, {email: req.body.email}]})
-      .then(results => res.send("user exist"))
+      .find({ username: req.body.username})
+      .then(results => res.json(results))
       .catch(err => res.status(422).json(err));
   }
 };

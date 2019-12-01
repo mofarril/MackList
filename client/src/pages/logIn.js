@@ -44,8 +44,9 @@ class Login extends Component {
                         Log In
               </FormBtn>
                 </form>
-                <a className="btn btn-success" href="/signup">Signup</a><br/><br/>
-                <a className="btn btn-success" href="/forgotPassword">Forgot Password</a>
+                <a className="btn btn-success" href="/signup">Signup</a><br/>
+                <a className="btn btn-success mt-2" href="/forgotPassword">Forgot Password</a><br/>
+                <a href="/" className="btn btn-success mt-2">Home Page</a>
                 </Col>
                 </div>
             </Wrapper>

@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import UserNavbar from '../components/UserNavbar';
-import Wrapper from "../components/Wrapper"
+import Wrapper from "../components/Wrapper";
+import API from "../utils/API";
 
 class User extends Component{
+
+  state = {
+    user: ""
+  }
+
+  componentDidMount() {
+    console.log("ok");
+  }
+
 render() {
   return (
     <Wrapper>
-      <UserNavbar user="Atif" />
+      <UserNavbar user={this.state.user} />
     </Wrapper>
   )
 }
