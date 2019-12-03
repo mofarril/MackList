@@ -4,7 +4,7 @@ const styles = {
         margin: "33%",
         background: "white"
     },
-    name:{
+    headName:{
         "text-align": "center"
     },
     content:{
@@ -19,10 +19,10 @@ function adCard(props) {
     </div>
     <div className= "content">
         <ul>
-            <li>
+            <li styles={styles.headName}>
                 <strong>Name:</strong> {props.name}
             </li>
-            <li>
+            <li styles={styles.content}>
                 <strong>Price:</strong>{props.price}
             </li>
         </ul>
