@@ -8,7 +8,8 @@ class Login extends Component {
 
     state = {
         username: "",
-        password: ""
+        password: "",
+        error: ""
     }
 
     handleInputChange = event => {
@@ -17,6 +18,29 @@ class Login extends Component {
           [name]: value
         });
       };
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        if (this.state.username && this.state.password) {
+            API.getUser(this.state.username)
+            .then(results => {
+                if(results.data.length>0){
+                    API.getPassword(this.state.password)
+                    .then(results => {
+                        if(results.data.length>0){
+                            window.location.href="/"
+                        }else{
+                            this.setState({error: "Username or Password is incorrect"})
+                        }
+                    })
+                    .catch(err => console.log(err));
+                }else{
+                    this.setState({error: "Username or Password is incorrect"})
+                }
+            })
+            .catch(err => console.log(err));
+        }
+    }
     
     render() {
         return (
@@ -25,16 +49,19 @@ class Login extends Component {
                 <div className="mx-5">
                 <Col>
                 <form>
+                <p>{this.state.error}</p>
                     <Input
                         value={this.state.username}
                         onChange={this.handleInputChange}
                         name="username"
+                        type="text"
                         placeholder="Enter Username"
                     />
                     <Input
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name="password"
+                        type="password"
                         placeholder="Enter Password"
                     />
                     <FormBtn
