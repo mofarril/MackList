@@ -10,7 +10,13 @@ module.exports = {
   },
   findUser: function(req, res) {
     db.User
-      .find({ username: req.body.username})
+      .find({ username: req.params.id})
+      .then(results => res.json(results))
+      .catch(err => res.status(422).json(err));
+  },
+  findEmail: function(req, res) {
+    db.User
+      .find({ email: req.params.id})
       .then(results => res.json(results))
       .catch(err => res.status(422).json(err));
   }
