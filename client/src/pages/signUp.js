@@ -26,9 +26,6 @@ class Login extends Component {
 
             API.getUser(this.state.username)
                 .then(results => {
-                    //console.log(results)
-                    // console.log(results.data[0].username);
-                    // console.log(this.state.username);
 
                     if (results.data.length > 0) {
                         this.setState({ error: "User ID already exist" })
@@ -43,8 +40,6 @@ class Login extends Component {
 
                         API.getEmail(this.state.email)
                             .then(results => {
-                                console.log(this.state.email)
-                                console.log(results)
                                 if (results.data.length > 0) {
                                     console.log(results.data.length)
                                     this.setState({ error: "Email already exist" })
@@ -72,7 +67,6 @@ class Login extends Component {
                                         .catch(err => console.log(err));
                                 }
                             })
-
                             .catch(err => console.log(err));
                     }
                 })

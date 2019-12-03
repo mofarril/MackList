@@ -12,4 +12,7 @@ router.route("/:id")
 router.route("/email/:id")
 .get(userController.findEmail)
 
+router.route("/password/:id")
+.get(userController.findPassword)
+
 module.exports = router;

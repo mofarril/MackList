@@ -19,5 +19,11 @@ module.exports = {
       .find({ email: req.params.id})
       .then(results => res.json(results))
       .catch(err => res.status(422).json(err));
+  },
+  findPassword: function(req, res) {
+    db.User
+      .find({ password: req.params.id})
+      .then(results => res.json(results))
+      .catch(err => res.status(422).json(err));
   }
 };
