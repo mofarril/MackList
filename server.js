@@ -12,12 +12,12 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(morgan('dev'))
-app.use(
-	bodyParser.urlencoded({
-		extended: false
-	})
-)
+// app.use(morgan('dev'))
+// app.use(
+// 	bodyParser.urlencoded({
+// 		extended: false
+// 	})
+// )
 app.use(bodyParser.json())
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
