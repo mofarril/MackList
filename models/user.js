@@ -11,11 +11,13 @@ const userSchema = new Schema({
 
 // Define schema methods
 userSchema.methods = {
-	checkPassword: function (inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.password)
-	},
 	hashPassword: plainTextPassword => {
 		return bcrypt.hashSync(plainTextPassword, 10)
+	}
+}
+userSchema.statics = {
+	checkPassword: function (inputPassword, storePassword) {
+		return bcrypt.compareSync(inputPassword, storePassword)
 	}
 }
 

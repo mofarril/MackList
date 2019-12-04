@@ -22,21 +22,18 @@ class Login extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.username && this.state.password) {
-            API.getUser(this.state.username)
+            console.log(this.state.username)
+            API.loginUser([{
+                username: this.state.username,
+                password: this.state.password
+            }])
             .then(results => {
-                if(results.data.length>0){
-                    API.getPassword(this.state.password)
-                    .then(results => {
-                        if(results.data.length>0){
-                            window.location.href="/"
+                console.log(results)
+                if(results.data === "success"){
+                    window.location.href="/"
                         }else{
                             this.setState({error: "Username or Password is incorrect"})
                         }
-                    })
-                    .catch(err => console.log(err));
-                }else{
-                    this.setState({error: "Username or Password is incorrect"})
-                }
             })
             .catch(err => console.log(err));
         }
