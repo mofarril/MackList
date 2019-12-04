@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/post" component={Post} /> */}
           {/* <Route component={NoMatch} /> */}
         </Switch>
+        
       </div>
     </Router>
   );
