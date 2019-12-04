@@ -24,13 +24,18 @@ module.exports = {
     console.log("Hello " + req.params.pass);
     db.User.find({username: req.params.user})
     .then(results => {
-      console.log(results[0].password)
-      console.log(db.User.checkPassword(req.params.pass, results[0].password))
+      console.log(results)
+      if(results.length === 0){
+        res.send("failure")
+      }else{
+      // console.log(results[0].password)
+      // console.log(db.User.checkPassword(req.params.pass, results[0].password))
       if(db.User.checkPassword(req.params.pass, results[0].password)){
         res.send("success")
       }else{
         res.send("failure")
       }
+    }
     }).catch(err => res.status(422).json(err));
   }
 };
