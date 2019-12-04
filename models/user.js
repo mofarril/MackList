@@ -10,14 +10,23 @@ const userSchema = new Schema({
 });
 
 // Define schema methods
+// userSchema.methods = {
+// 	hashPassword: plainTextPassword => {
+// 		return bcrypt.hashSync(plainTextPassword, 10)
+// 	}
+// }
+// userSchema.methods = {
+// 	checkPassword: function (inputPassword) {
+// 		return bcrypt.compareSync(inputPassword, this.password)
+// 	}
+// }
+
 userSchema.methods = {
+	checkPassword: function (inputPassword) {
+		return bcrypt.compareSync(inputPassword, this.password)
+	},
 	hashPassword: plainTextPassword => {
 		return bcrypt.hashSync(plainTextPassword, 10)
-	}
-}
-userSchema.statics = {
-	checkPassword: function (inputPassword, storePassword) {
-		return bcrypt.compareSync(inputPassword, storePassword)
 	}
 }
 
@@ -31,6 +40,7 @@ userSchema.pre('save', function (next) {
 		
 		this.password = this.hashPassword(this.password)
 		next()
+		console.log(this.password)
 	}
 })
 
