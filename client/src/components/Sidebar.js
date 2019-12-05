@@ -18,11 +18,11 @@ class Sidebar extends Component {
             <div class="row">
                 <div class="col-lg-3">
                     <div class="pos-f-t">
-                        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent1" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse" id="navbarToggleExternalContent">
+                        <div class="collapse" id="navbarToggleExternalContent1">
                             <nav class="nav flex-column bg-dark">
                                 <a class="nav-link active" href="#collapseExample">Deparments</a>
                                 <a class="btn btn-primary" data-toggle="collapse" href="#cars" role="button" aria-expanded="false" aria-controls="collapseExample">
