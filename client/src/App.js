@@ -6,6 +6,7 @@ import Login from "./pages/logIn"
 import Signup from "./pages/signUp"
 import Navbar from "./components/Navbar"
 import axios from "axios"
+import UserPost from "./pages/user-post";
 // import Post from "./pages/post";
 // import UserPost from "./pages/user-post";
 class App extends Component {
@@ -67,6 +68,10 @@ render() {
             <Login
               updateUser={this.updateUser}
             />}/>
+                        <UserPost
+              user={this.username}
+            />}/>
+
           <Route exact path="/signup" component={Signup} />
           {/* <Route exact path="/user/post" component={UserPost} />
           <Route exact path="/post" component={Post} /> */}
