@@ -5,24 +5,50 @@ function Sidebar(props) {
         <div class="row">
             <div class="col-lg-3">
                 <div class="pos-f-t">
-                    <nav class="navbar navbar-dark bg-dark">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <h3 class="text-white">MackList</h3>
-                    </nav>
+                   
                     <div class="collapse" id="navbarToggleExternalContent">
                         <nav class="nav flex-column bg-dark">
-                            <a class="nav-link active" href="#">Cateory</a>
-                            <a class="nav-link" href="#">Category</a>
-                            <a class="nav-link" href="#">Category</a>
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Category</a>
+                            <a class="nav-link active" href="#collapseExample">Deparments</a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Category </a>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    links of categories
+                                </div>
+                            </div>
+                            <a class="nav-link" href="#">Deparments</a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Category </a>
+                            <div class="collapse" id="collapseExample2">
+                                <div class="card card-body">
+                                    links of categories
+                                </div>
+                            </div>
+                            <a class="nav-link" href="#">Deparments</a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Category </a>
+                            <div class="collapse" id="collapseExample3">
+                                <div class="card card-body">
+                                    links of categories
+                                </div>
+                            </div>
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Deparments</a>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Category </a>
+                            <div class="collapse" id="collapseExample4">
+                                <div class="card card-body">
+                                    links of categories
+                                </div>
+                            </div>
                         </nav>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9">
-            <h1>testing</h1>
+                <h1>testing</h1>
             </div>
         </div>
 
