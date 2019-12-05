@@ -15,45 +15,45 @@ class Sidebar extends Component {
     }
     render() {
         return (
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="pos-f-t">
-                        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent1" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+            <div className="row">
+                <div className="col-lg-3">
+                    <div className="pos-f-t">
+                        <button className="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent1" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse" id="navbarToggleExternalContent1">
-                            <nav class="nav flex-column bg-dark">
-                                <a class="nav-link active" href="#collapseExample">Deparments</a>
-                                <a class="btn btn-primary" data-toggle="collapse" href="#cars" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div className="collapse" id="navbarToggleExternalContent1">
+                            <nav className="nav flex-column bg-dark">
+                                <a className="nav-link active" href="#collapseExample">Deparments</a>
+                                <a className="btn btn-primary" data-toggle="collapse" href="#cars" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Cars </a>
-                                <div class="collapse" id="cars">
-                                    <div class="card card-body">
-                                        <a class="nav-link text-primary" href="#lowPrice" onClick={this.lowTohigh}>lowTohigh</a>
-                                        <a class="nav-link text-primary" href="#highPrice">highPrice</a>{}
+                                <div className="collapse" id="cars">
+                                    <div className="card card-body">
+                                        <a className="nav-link text-primary" href="#lowPrice" onClick={this.lowTohigh}>lowTohigh</a>
+                                        <a className="nav-link text-primary" href="#highPrice">highPrice</a>{}
                                     </div>
                                 </div>
-                                <a class="nav-link" href="#">Deparments</a>
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <a className="nav-link" href="#">Deparments</a>
+                                <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Category </a>
-                                <div class="collapse" id="collapseExample2">
-                                    <div class="card card-body">
+                                <div className="collapse" id="collapseExample2">
+                                    <div className="card card-body">
                                         links of categories
                                 </div>
                                 </div>
-                                <a class="nav-link" href="#">Deparments</a>
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <a className="nav-link" href="#">Deparments</a>
+                                <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Category </a>
-                                <div class="collapse" id="collapseExample3">
-                                    <div class="card card-body">
+                                <div className="collapse" id="collapseExample3">
+                                    <div className="card card-body">
                                         links of categories
                                 </div>
                                 </div>
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Deparments</a>
-                                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Deparments</a>
+                                <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Category </a>
-                                <div class="collapse" id="collapseExample4">
-                                    <div class="card card-body">
+                                <div className="collapse" id="collapseExample4">
+                                    <div className="card card-body">
                                         links of categories
                                 </div>
                                 </div>
@@ -64,7 +64,7 @@ class Sidebar extends Component {
                 {/* <div id="lowPrice">
                     jsx of lowPrice function here
                 </div> */}
-                <div class="col-lg-9">
+                <div className="col-lg-9">
                     <h1>testing</h1>
                 </div>
             </div>

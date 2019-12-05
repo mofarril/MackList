@@ -5,6 +5,7 @@ import User from "./pages/user";
 import Login from "./pages/logIn"
 import Signup from "./pages/signUp"
 import Navbar from "./components/Navbar"
+import UserPost from "./pages/user-post"
 import axios from "axios"
 // import Post from "./pages/post";
 // import UserPost from "./pages/user-post";
@@ -67,6 +68,7 @@ render() {
             <Login
               updateUser={this.updateUser}
             />}/>
+          <Route exact path="/user-post" component={UserPost} />
           <Route exact path="/signup" component={Signup} />
           {/* <Route exact path="/user/post" component={UserPost} />
           <Route exact path="/post" component={Post} /> */}
