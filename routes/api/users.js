@@ -15,6 +15,12 @@ router.route("/email/:id")
 router.route("/login/:user/:pass")
 .get(userController.loginUser)
 
+router.route("/updateUser/:olduser/:newuser")
+.put(userController.updateUser)
+
+router.route("/updatePassword/:user/:pass")
+.put(userController.updatePassword)
+
 router.post(
     "/login",
     function (req, res, next) {
