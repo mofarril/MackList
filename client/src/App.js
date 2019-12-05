@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/home";
 import User from "./pages/user";
@@ -26,7 +26,7 @@ class App extends Component {
     this.getUser()
   }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject)
   }
 
@@ -51,37 +51,38 @@ class App extends Component {
     })
   }
 
-render() {
-  return (
-<div className="App">
-    <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-         {/* greet user if logged in: */}
+  render() {
+    return (
+      <div className="App">
+        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        {/* greet user if logged in: */}
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
         }
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/user" component={User} />
-          <Route exact path="/login" render={() =>
-            <Login
-              updateUser={this.updateUser}
-            />}/>
-                        <UserPost
-              user={this.username}
-            />}/>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/user" component={User} />
+              <Route exact path="/login" render={() =>
+                <Login
+                  updateUser={this.updateUser}
+                />} />
+              <Route exact path="/user-post" render={() =>
+                <UserPost
+                  user={this.state.username}
+                />} />
 
-          <Route exact path="/signup" component={Signup} />
-          {/* <Route exact path="/user/post" component={UserPost} />
+              <Route exact path="/signup" component={Signup} />
+              {/* <Route exact path="/user/post" component={UserPost} />
           <Route exact path="/post" component={Post} /> */}
-          {/* <Route component={NoMatch} /> */}
-        </Switch>
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
+          </div>
+        </Router>
       </div>
-    </Router>
-    </div>
-  );
-}
+    );
+  }
 }
 
 export default App;

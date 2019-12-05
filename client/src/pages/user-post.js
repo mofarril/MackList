@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Wrapper from "../components/Wrapper";
-import mongoose from "mongoose"
 
 class UserPost extends Component {
 
@@ -13,9 +12,11 @@ class UserPost extends Component {
             <Wrapper>
                 <h1>Welcome, {this.props.user}</h1>
 
-                <div className= "user-post">
+                <div className="user-post">
                     <h3>Your posts</h3>
-                    {this.state.myPost}
+                    <div className= "mypost-container">
+                        {this.state.myPost}
+                    </div>
                 </div>
             </Wrapper>
         )
