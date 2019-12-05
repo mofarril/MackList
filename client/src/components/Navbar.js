@@ -22,10 +22,15 @@ class Navbar extends Component {
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      error: ""
     });
   };
 
+  clearError = (event) => {
+    event.preventDefault();
+    this.setState({error:""})
+  }
   changeUsername = (event) => {
     event.preventDefault();
     const user = this.props.user;
@@ -33,14 +38,14 @@ class Navbar extends Component {
     API.getUser(this.state.username)
     .then(results => {
       if(results.data.length > 0){
-        this.setState({error: "Username already exist. Please try another username"})
+        this.setState({error: "Username already exist. Please try another username", username: ""})
       }else{
         console.log( "Hello123 " + user);
         API.updateUser({
           newuser: this.state.username,
           olduser: user
         }).then(res =>{
-          this.setState({error: "Username has been changed. Logout and Log back in for changes to take place."})
+          this.setState({error: "Username has been changed. Logout and Log back in for changes to take place.", username: ""})
         }).catch(err => console.log(err));
       }
     }).catch(err => console.log(err));
@@ -54,8 +59,9 @@ class Navbar extends Component {
       username: user,
       password: newPassword
     }).then(res => {
-      this.setState({error: "Password has been changed. Logout and Log back in for changes to take place."})
+      this.setState({error: "Password has been changed. Logout and Log back in for changes to take place.", password: ""})
     }).catch(err => console.log(err));
+    this.setState({error: ""})
   }
 
   logout(event) {
@@ -102,8 +108,8 @@ class Navbar extends Component {
             <div className="collapse" id="navbarToggleExternalContent">
               <div className="bg-white p-4">
                 <a className="text-dark h4" href="/user-post">My Profile</a><br />
-                <a className="text-dark h4" href="#" data-toggle="modal" data-target="#changeusername">Change Username</a><br />
-                <a className="text-dark h4" href="#" data-toggle="modal" data-target="#changepassword">Change Password</a><br />
+                <a className="text-dark h4" href="#" data-toggle="modal" data-target="#changeusername" onClick={this.clearError}>Change Username</a><br />
+                <a className="text-dark h4" href="#" data-toggle="modal" data-target="#changepassword" onClick={this.clearError}>Change Password</a><br />
                 <a href="/" className="text-dark h4" onClick={this.logout}>LogOut</a>
               </div>
             </div>
