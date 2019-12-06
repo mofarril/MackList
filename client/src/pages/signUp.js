@@ -22,8 +22,8 @@ class Login extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.username && this.state.email && this.state.password) {
 
+        if (this.state.username && this.state.email && this.state.password) {
             API.getUser(this.state.username)
                 .then(results => {
 
@@ -49,7 +49,7 @@ class Login extends Component {
                                         password: "",
                                     })
                                     return 0;
-                                } 
+                                }
                                 else {
                                     API.signupUser({
                                         username: this.state.username,
@@ -72,6 +72,7 @@ class Login extends Component {
                 })
                 .catch(err => console.log(err));
         }
+
     }
 
     render() {
@@ -80,39 +81,40 @@ class Login extends Component {
                 <h1 className="text-center">SignUp to Macklist!</h1><br />
                 <div className="mx-5">
                     <Col>
-                        <form>
+                        <form onSubmit={this.handleFormSubmit}>
                             <p>{this.state.error}</p>
                             <Input
                                 value={this.state.username}
                                 onChange={this.handleInputChange}
                                 name="username"
                                 type="text"
+                                pattern="[A-Za-z0-9]{6,}"
                                 placeholder="Enter Username"
+                                required
+                                title="Username can only contain Uppercase, Lowercase or number and atleast 6 or more characters"
                             />
                             <Input
                                 value={this.state.email}
                                 onChange={this.handleInputChange}
                                 name="email"
                                 type="email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                 placeholder="Enter Email Address"
+                                required
                             />
                             <Input
                                 value={this.state.password}
                                 onChange={this.handleInputChange}
                                 name="password"
                                 type="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                 placeholder="Enter Password"
+                                required
                             />
-                            <FormBtn
-                                disabled={!(this.state.username && this.state.password && this.state.email)}
-                                onClick={this.handleFormSubmit}
-                            >
-                                SignUp
-              </FormBtn>
+                            <button type="submit" className="btn btn-success mb-2">SignUp</button>
                         </form>
                         <a className="btn btn-success" href="/login">LogIn</a><br />
-                        <a className="btn btn-success mt-2" href="/forgotPassword">Forgot Password</a><br />
-                        <a href="/" className="btn btn-success mt-2">Home Page</a>
                     </Col>
                 </div>
             </Wrapper>

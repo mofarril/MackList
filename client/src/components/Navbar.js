@@ -128,7 +128,7 @@ class Navbar extends Component {
                 </button>
               </div>
               <div className="modal-body">
-              <form>
+              <form onSubmit={this.changeUsername}>
                 <p>{this.state.error}</p>
                     <Input
                         value={this.state.username}
@@ -136,13 +136,11 @@ class Navbar extends Component {
                         name="username"
                         type="text"
                         placeholder="Enter New Username"
+                        pattern="[A-Za-z0-9]{6,}"
+                        required
+                        title="Username can only contain Uppercase, Lowercase or number and atleast 6 or more characters"
                     />
-                    <FormBtn
-                        disabled={!(this.state.username)}
-                        onClick={this.changeUsername}
-                    >
-                        Change Username
-              </FormBtn>
+                    <button type="submit" className="btn btn-success mb-2">Change Username</button>
               <div>
               <FormBtn data-dismiss="modal">Close</FormBtn>
               </div>
@@ -164,7 +162,7 @@ class Navbar extends Component {
                 </button>
               </div>
               <div className="modal-body">
-              <form>
+              <form onSubmit={this.changePassword}>
                 <p>{this.state.error}</p>
                     <Input
                         value={this.state.password}
@@ -172,13 +170,11 @@ class Navbar extends Component {
                         name="password"
                         type="password"
                         placeholder="Enter New Password"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        required
                     />
-                    <FormBtn
-                        disabled={!(this.state.password)}
-                        onClick={this.changePassword}
-                    >
-                        Change Password
-              </FormBtn>
+                    <button type="submit" className="btn btn-success mb-2">Change Password</button>
               <div>
               <FormBtn data-dismiss="modal">Close</FormBtn>
               </div>
