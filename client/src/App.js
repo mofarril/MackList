@@ -5,6 +5,7 @@ import User from "./pages/user";
 import Login from "./pages/logIn"
 import Signup from "./pages/signUp"
 import Navbar from "./components/Navbar"
+import UserPost from "./pages/user-post"
 import axios from "axios"
 import UserPost from "./pages/user-post";
 // import Post from "./pages/post";
@@ -51,36 +52,33 @@ class App extends Component {
     })
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-        {/* greet user if logged in: */}
-        {this.state.loggedIn &&
+render() {
+  return (
+<div className="App">
+    <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} user={this.state.username}/>
+         {/* greet user if logged in: */}
+        {/* {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
-        }
-        <Router>
-          <div>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/user" component={User} />
-              <Route exact path="/login" render={() =>
-                <Login
-                  updateUser={this.updateUser}
-                />} />
-              <Route exact path="/user-post" render={() =>
-                <UserPost
-                  user={this.state.username}
-                />} />
-
-              <Route exact path="/signup" component={Signup} />
-              {/* <Route exact path="/user/post" component={UserPost} />
+        } */}
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/user" component={User} />
+          <Route exact path="/login" render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />}/>
+          <Route exact path="/user-post" component={UserPost} />
+          <Route exact path="/signup" component={Signup} />
+          {/* <Route exact path="/user/post" component={UserPost} />
           <Route exact path="/post" component={Post} /> */}
-              {/* <Route component={NoMatch} /> */}
-            </Switch>
-          </div>
+          {/* <Route component={NoMatch} /> */}
+        </Switch>
+        </div>
         </Router>
       </div>
+
     );
   }
 }
