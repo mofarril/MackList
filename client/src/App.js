@@ -5,7 +5,6 @@ import User from "./pages/user";
 import Login from "./pages/logIn"
 import Signup from "./pages/signUp"
 import Navbar from "./components/Navbar"
-import UserPost from "./pages/user-post"
 import axios from "axios"
 import UserPost from "./pages/user-post";
 // import Post from "./pages/post";
