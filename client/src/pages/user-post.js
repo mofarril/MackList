@@ -25,7 +25,7 @@ class UserPost extends Component {
             body: data,
         }).then((response) => {
             response.json().then((body) => {
-                this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+                this.setState({ imageURL: `http://localhost:3000/${body.file}` });
             });
         });
     }
@@ -47,7 +47,7 @@ class UserPost extends Component {
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Image Upload</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
