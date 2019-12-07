@@ -8,8 +8,10 @@ class Form extends Component {
     productImage: "",
     productDescription: "", 
     productCost: "",
+
     locationCity: "",
     locationState: "",
+
     sellerContactName: "", 
     sellerContactPhone: "", 
     sellerContactEmail: "", 
@@ -23,31 +25,58 @@ class Form extends Component {
 
     if (name === "productDescription") {
       value = value.substring(0, 180);
+    } else if (name ==="productTitle") {
+      value = value.substring(0, 30)
+    } else if (name ==="productImage") {
+      value = value.substring(0, 180)
+    } else if (name ==="productCost") {
+      value = value.substring(0, 180)
+    } 
+    else if (name ==="locationCity") {
+      value = value.substring(0, 180)
+    }else if (name ==="locationState") {
+      value = value.substring(0, 180)
     }
+    else if (name ==="sellerContactName") {
+      value = value.substring(0, 180)
+    }
+    else if (name ==="sellerContactPhone") {
+      value = value.substring(0, 180)
+    }
+    else if (name ==="sellerContactEmail") {
+      value = value.substring(0, 180)
+    }
+    else if (name ==="sellerPreferedContact") {
+      value = value.substring(0, 180)
+    }
+    
     // Updating the input's state
     this.setState({
-      [name]: value
-    });
+      [name]: value });
   };
 
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    if (!this.state.productTitle || !this.state.productImage) {
-      alert("Fill out your first and last name please!");
+    if (!this.state.productTitle || !this.state.productImage || !this.state.locationCity || this.state.sellerContactEmail) {
+      alert("Fill out the Required Fields of your post please!");
     } else if (this.state.productDescription.length < 6) {
-      alert(
-        `Choose a more secure productDescription ${this.state.productTitle} ${this.state
-          .productImage}`
-      );
-    } else {
-      alert(`Hello ${this.state.productTitle} ${this.state.productImage}`);
-    }
-
+      
+    } 
     this.setState({
       productTitle: "",
       productImage: "",
-      productDescription: ""
+      productDescription: "",
+      productCost: "",
+
+    locationCity: "",
+    locationState: "",
+
+    sellerContactName: "", 
+    sellerContactPhone: "", 
+    sellerContactEmail: "", 
+    sellerPreferedContact: false
+
     });
   };
 
@@ -56,7 +85,7 @@ class Form extends Component {
     return (
       <div>
         <p>
-          Hello {this.state.productTitle} {this.state.productImage}
+          Selling: {this.state.productTitle} {this.state.productImage}
         </p>
         <form className="form">
           <input
@@ -80,9 +109,59 @@ class Form extends Component {
             type="productDescription"
             placeholder="productDescription"
           />
+          <input
+            value={this.state.productCost}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
+          <input
+            value={this.state.loctionCity}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
+          <input
+            value={this.state.loctionState}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
+          <input
+            value={this.state.sellerContactName}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
+          <input
+            value={this.state.sellerContactEmail}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
+          <input
+            value={this.state.sellerContactPhone}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
+          <input
+            value={this.state.sellerPreferedContact}
+            name="productDescription"
+            onChange={this.handleInputChange}
+            type="productDescription"
+            placeholder="productDescription"
+          />
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
       </div>
     );
   }
 }
+export default Form;
