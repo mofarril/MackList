@@ -44,8 +44,8 @@ module.exports = {
         host: 'smtp.gmail.com',
         secure: true,
         auth:{
-          user: `${process.env.USER}`,
-          pass: `${process.env.PASSWORD}`
+          user: "noreply.macklist@gmail.com",
+          pass: "Macklist1234"
         },
       })
       const message = {
