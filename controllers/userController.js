@@ -41,10 +41,11 @@ module.exports = {
     .then(results =>{
       console.log( "Hello " + results[0].email)
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        secure: true,
         auth:{
-          user: `${process.env.USER}`,
-          pass: `${process.env.PASSWORD}`
+          user: "noreply.macklist@gmail.com",
+          pass: "Macklist1234"
         },
       })
       const message = {
