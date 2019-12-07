@@ -12,9 +12,15 @@ router
   .route("/:id")
   .get(adController.findById)
   .delete(adController.remove);
+
 // Matches with "/api/ads/lowTohigh"
 router.get("/lowTohigh", function (req, res) {
  db.Ad.sort(function(a, b){return a-b});
 })
+
+// Matches with "/api/ads/highTolow"
+router.get("/highTolow", function (req, res) {
+  db.Ad.sort(function(a, b){return b-a});
+ })
 
 module.exports = router;

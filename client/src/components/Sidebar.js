@@ -14,6 +14,16 @@ class Sidebar extends Component {
                 console.log(err)
             })
     }
+
+    highTolow = () => {
+        Axios.get("/api/ads/highTolow")
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
     render() {
         return (
             <div className="row">
@@ -27,13 +37,13 @@ class Sidebar extends Component {
                                 <div class="form-check">
                                     <input  class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  onClick={this.lowTohigh}></input>
                                     <label class="form-check-label" for="exampleRadios1">
-                                        <a className="text-primary" href="#lowPrice">lowTohigh</a>
+                                        <a className="text-primary">lowTohigh</a>
                                     </label>
                                 </div>
                                 <div className="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></input>
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
                                     <label class="form-check-label" for="exampleRadios2">
-                                        <a className="text-primary" href="#highPrice">highPrice</a>
+                                        <a className="text-primary">highTolow</a>
                                     </label>
                                 </div>
                             </div>
