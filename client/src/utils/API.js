@@ -20,5 +20,9 @@ export default {
     updatePassword: function(UserData){
         console.log(UserData)
         return axios.put("/api/users/updatePassword/" + UserData.username + "/" + UserData.password)
+    },
+    forgotPassword: function(UserData){
+        //console.log(UserData)
+        return axios.post("/api/users/forgotPassword", UserData)
     }
 }
