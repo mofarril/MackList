@@ -4,6 +4,7 @@ import Home from "./pages/home";
 import User from "./pages/user";
 import Login from "./pages/logIn"
 import Signup from "./pages/signUp"
+import ForgotPassword from "./pages/forgotPassword"
 import Navbar from "./components/Navbar"
 import UserPost from "./pages/user-post"
 import axios from "axios"
@@ -70,6 +71,7 @@ render() {
             />}/>
           <Route exact path="/user-post" component={UserPost} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/forgotPassword" component={ForgotPassword} />
           {/* <Route exact path="/user/post" component={UserPost} />
           <Route exact path="/post" component={Post} /> */}
           {/* <Route component={NoMatch} /> */}

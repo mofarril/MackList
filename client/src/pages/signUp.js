@@ -101,6 +101,7 @@ class Login extends Component {
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                 placeholder="Enter Email Address"
                                 required
+                                title="Must be in the following order: characters@characters.domain"
                             />
                             <Input
                                 value={this.state.password}
