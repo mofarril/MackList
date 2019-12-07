@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import ShowAds from "./ShowAds"
 
 
 
@@ -65,7 +66,7 @@ class Sidebar extends Component {
                     jsx of lowPrice function here
                 </div> */}
                 <div className="col-lg-9">
-                    <h1>testing</h1>
+                    <ShowAds />
                 </div>
             </div>
         )
