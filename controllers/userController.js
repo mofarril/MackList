@@ -39,7 +39,7 @@ module.exports = {
     console.log(req.body)
     db.User.find({email: req.body.email})
     .then(results =>{
-      console.log(results[0].email)
+      console.log( "Hello " + results[0].email)
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth:{
