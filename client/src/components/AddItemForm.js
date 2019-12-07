@@ -6,14 +6,16 @@ class Form extends Component {
   state = {
     productTitle: "",
     productImage: "",
-    productDescription: "", 
+    productDescription: "",
     productCost: "",
+
     locationCity: "",
     locationState: "",
-    sellerContactName: "", 
-    sellerContactPhone: "", 
-    sellerContactEmail: "", 
-    sellerPreferedContact: false
+
+    sellerContactName: "",
+    sellerContactPhone: "",
+    sellerContactEmail: "",
+    // sellerPreferedContact: false
   };
 
   handleInputChange = event => {
@@ -23,7 +25,31 @@ class Form extends Component {
 
     if (name === "productDescription") {
       value = value.substring(0, 180);
+    } else if (name === "productTitle") {
+      value = value.substring(0, 30)
+    } else if (name === "productImage") {
+      value = value.substring(0, 180)
+    } else if (name === "productCost") {
+      value = value.substring(0, 180)
     }
+    else if (name === "locationCity") {
+      value = value.substring(0, 180)
+    } else if (name === "locationState") {
+      value = value.substring(0, 180)
+    }
+    else if (name === "sellerContactName") {
+      value = value.substring(0, 180)
+    }
+    else if (name === "sellerContactPhone") {
+      value = value.substring(0, 180)
+    }
+    else if (name === "sellerContactEmail") {
+      value = value.substring(0, 180)
+    }
+    else if (name === "sellerPreferedContact") {
+      value = value.substring(0, 180)
+    }
+
     // Updating the input's state
     this.setState({
       [name]: value
@@ -33,21 +59,25 @@ class Form extends Component {
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    if (!this.state.productTitle || !this.state.productImage) {
-      alert("Fill out your first and last name please!");
+    if (!this.state.productTitle || !this.state.productImage || !this.state.locationCity || this.state.sellerContactEmail) {
+      alert("Fill out the Required Fields of your post please!");
     } else if (this.state.productDescription.length < 6) {
-      alert(
-        `Choose a more secure productDescription ${this.state.productTitle} ${this.state
-          .productImage}`
-      );
-    } else {
-      alert(`Hello ${this.state.productTitle} ${this.state.productImage}`);
-    }
 
+    }
     this.setState({
       productTitle: "",
       productImage: "",
-      productDescription: ""
+      productDescription: "",
+      productCost: "",
+
+      locationCity: "",
+      locationState: "",
+
+      sellerContactName: "",
+      sellerContactPhone: "",
+      sellerContactEmail: "",
+      // sellerPreferedContact: false
+
     });
   };
 
@@ -56,7 +86,7 @@ class Form extends Component {
     return (
       <div>
         <p>
-          Hello {this.state.productTitle} {this.state.productImage}
+          Selling: {this.state.productTitle} {this.state.productImage}
         </p>
         <form className="form">
           <input
@@ -78,11 +108,64 @@ class Form extends Component {
             name="productDescription"
             onChange={this.handleInputChange}
             type="productDescription"
-            placeholder="productDescription"
+            placeholder="Product Description"
           />
+          <input
+            value={this.state.productCost}
+            name="productCost"
+            onChange={this.handleInputChange}
+            type="productCost"
+            placeholder="Price"
+          />
+          <input
+            value={this.state.locationCity}
+            name="locationCity"
+            onChange={this.handleInputChange}
+            type="locationCity"
+            placeholder="City"
+          />
+          <input
+            value={this.state.locationState}
+            name="locationState"
+            onChange={this.handleInputChange}
+            type="locationState"
+            placeholder="State"
+          />
+          <input
+            value={this.state.sellerContactName}
+            name="sellerContactName"
+            onChange={this.handleInputChange}
+            type="sellerContactName"
+            placeholder="Contact Name"
+          />
+          <input
+            value={this.state.sellerContactEmail}
+            name="sellerContactEmail"
+            onChange={this.handleInputChange}
+            type="sellerContactEmail"
+            placeholder="Email"
+          />
+          <input
+            value={this.state.sellerContactPhone}
+            name="sellerContactPhone"
+            onChange={this.handleInputChange}
+            type="sellerContactPhone"
+            placeholder="Contact Phone"
+          />
+          <input
+            value={this.state.sellerPreferedContact}
+            name="sellerPreferredContact"
+            onChange={this.handleInputChange}
+            type="sellerPreferredContact"
+            placeholder="Perferred Contact"
+          />
+            <input type="radio" name="options" id="option1" checked> 
+         </input>
+          
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
       </div>
     );
   }
 }
+export default Form;
