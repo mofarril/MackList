@@ -37,6 +37,9 @@ module.exports = {
   },
   forgotPassword: function(req,res){
     console.log(req.body)
+    db.User.updateOne({email: req.body.email}, {password: req.body.password})
+    .then(results => {
+      console.log(results)
     db.User.find({email: req.body.email})
     .then(results =>{
       console.log( "Hello " + results[0].email)
@@ -55,7 +58,7 @@ module.exports = {
         text:
         "Your are receiving this email because you (or someone else) have requested this information. \n\n"
         + "username: " + `${results[0].username}\n`
-        + "password: " + `${results[0].password}\n\n`
+        + "password: " + `${req.body.plainpass}\n\n`
         + "Note: Please change your password as soon as you get this email to secure your account!"
       };
 
@@ -68,6 +71,7 @@ module.exports = {
       })
       res.json(results)
     }).catch(err => res.status(422).json(err));
+  }).catch(err => res.status(422).json(err));
 
   }
 };
