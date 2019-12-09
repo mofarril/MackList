@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Input, TextArea, FormBtn } from "../components/input";
 
 
 class Form extends Component {
@@ -20,40 +21,10 @@ class Form extends Component {
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
-    let value = event.target.value;
-    const name = event.target.name;
-
-    if (name === "productDescription") {
-      value = value.substring(0, 180);
-    } else if (name === "productTitle") {
-      value = value.substring(0, 30)
-    } else if (name === "productImage") {
-      value = value.substring(0, 180)
-    } else if (name === "productCost") {
-      value = value.substring(0, 180)
-    }
-    else if (name === "locationCity") {
-      value = value.substring(0, 180)
-    } else if (name === "locationState") {
-      value = value.substring(0, 180)
-    }
-    else if (name === "sellerContactName") {
-      value = value.substring(0, 180)
-    }
-    else if (name === "sellerContactPhone") {
-      value = value.substring(0, 180)
-    }
-    else if (name === "sellerContactEmail") {
-      value = value.substring(0, 180)
-    }
-    else if (name === "sellerPreferedContact") {
-      value = value.substring(0, 180)
-    }
-
-    // Updating the input's state
-    this.setState({
-      [name]: value
-    });
+    const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
   };
 
   handleFormSubmit = event => {
@@ -76,7 +47,7 @@ class Form extends Component {
       sellerContactName: "",
       sellerContactPhone: "",
       sellerContactEmail: "",
-      // sellerPreferedContact: false
+      sellerPreferedContact: ""
 
     });
   };
@@ -88,81 +59,97 @@ class Form extends Component {
         <p>
           Selling: {this.state.productTitle} {this.state.productImage}
         </p>
-        <form className="form">
-          <input
+        <form className="form" onSubmit={this.handleFormSubmit}>
+          <label>Title</label>
+          <Input
             value={this.state.productTitle}
             name="productTitle"
             onChange={this.handleInputChange}
             type="text"
-            placeholder="First Name"
+            required
+            placeholder="Product Title"
           />
-          <input
+          <label>Image</label>
+          <Input
             value={this.state.productImage}
             name="productImage"
             onChange={this.handleInputChange}
-            type="text"
-            placeholder="Last Name"
+            type="file"
+            required
+            placeholder="Product Image"
           />
-          <input
+          <label>Description</label>
+          <TextArea
             value={this.state.productDescription}
             name="productDescription"
             onChange={this.handleInputChange}
-            type="productDescription"
+            type="text"
             placeholder="Product Description"
+            required
           />
-          <input
+          <label>Price</label>
+          <Input
             value={this.state.productCost}
             name="productCost"
             onChange={this.handleInputChange}
-            type="productCost"
+            type="text"
+            pattern="[0-9]{1,}"
             placeholder="Price"
+            required
+            title = "Please enter numeric value"
           />
-          <input
+          <label>City</label>
+          <Input
             value={this.state.locationCity}
             name="locationCity"
             onChange={this.handleInputChange}
-            type="locationCity"
+            type="text"
             placeholder="City"
+            required
           />
-          <input
+          <label>State</label>
+          <Input
             value={this.state.locationState}
             name="locationState"
             onChange={this.handleInputChange}
-            type="locationState"
+            type="text"
+            required
             placeholder="State"
           />
-          <input
+          <label>Contact Name</label>
+          <Input
             value={this.state.sellerContactName}
             name="sellerContactName"
             onChange={this.handleInputChange}
-            type="sellerContactName"
+            type="text"
+            required
             placeholder="Contact Name"
           />
-          <input
+          <label>Contact Email</label>
+          <Input
             value={this.state.sellerContactEmail}
             name="sellerContactEmail"
+            required
             onChange={this.handleInputChange}
-            type="sellerContactEmail"
+            type="email"
             placeholder="Email"
           />
-          <input
+          <label>Contact Phone</label>
+          <Input
             value={this.state.sellerContactPhone}
             name="sellerContactPhone"
             onChange={this.handleInputChange}
-            type="sellerContactPhone"
+            type="text"
+            required
             placeholder="Contact Phone"
+            pattern="[0-9]{1,}"
+            title = "Please enter numeric value"
           />
-          <input
-            value={this.state.sellerPreferedContact}
-            name="sellerPreferredContact"
-            onChange={this.handleInputChange}
-            type="sellerPreferredContact"
-            placeholder="Perferred Contact"
-          />
-            <input type="radio" name="options" id="option1" checked> 
-         </input>
+          <label>Preferred Contact Method</label><br/>
+          <input type="radio" name="sellerPreferedContact" value="Email" /> Email<br/>
+          <input type="radio" name="sellerPreferedContact" value="Phone" /> Phone<br/><br/>
           
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <button type="submit" className="btn btn-success">Submit</button>
         </form>
       </div>
     );
