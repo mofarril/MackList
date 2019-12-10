@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <Wrapper>
         <Sidebar />
-        <h1>All the ads will be here.</h1>
+        
       
       </Wrapper>
     )

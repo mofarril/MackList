@@ -69,7 +69,11 @@ render() {
             <Login
               updateUser={this.updateUser}
             />}/>
-          <Route exact path="/user-post" component={UserPost} />
+          <Route exact path="/user-post" render={() =>
+          <UserPost
+          user = {this.state.username}
+          loggedIn = {this.state.loggedIn}
+          />} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/forgotPassword" component={ForgotPassword} />
           {/* <Route exact path="/user/post" component={UserPost} />
