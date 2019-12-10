@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import ShowAds from "./ShowAds"
+import cityState from "../utils/cityState"
 
 
 
@@ -30,12 +31,22 @@ class Sidebar extends Component {
                 <div className="col-lg-3">
                     <nav className="nav flex-column bg-dark">
                         <a className="nav-link active" href="#collapseExample">Deparments</a>
-                        <a className="btn btn-primary" data-toggle="collapse" href="#cars" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a className="btn btn-success" data-toggle="collapse" href="#cars" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Cars </a>
                         <div className="collapse" id="cars">
                             <div className="card card-body">
+                                <div class="form-group">
+                                    <label for="FormControlSelect">City, State</label>
+                                    <select multiple class="form-control" id="FormControlSelect">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
                                 <div class="form-check">
-                                    <input  class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  onClick={this.lowTohigh}></input>
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
                                     <label class="form-check-label" for="exampleRadios1">
                                         <a className="text-primary">lowTohigh</a>
                                     </label>
@@ -49,28 +60,91 @@ class Sidebar extends Component {
                             </div>
                         </div>
                         <a className="nav-link" href="#">Deparments</a>
-                        <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a className="btn btn-success" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Category </a>
                         <div className="collapse" id="collapseExample2">
                             <div className="card card-body">
-                                links of categories
+                                <div class="form-group">
+                                    <label for="FormControlSelect">City, State</label>
+                                    <select multiple class="form-control" id="FormControlSelect">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <a className="text-primary">lowTohigh</a>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        <a className="text-primary">highTolow</a>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <a className="nav-link" href="#">Deparments</a>
-                        <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a className="btn btn-success" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Category </a>
                         <div className="collapse" id="collapseExample3">
                             <div className="card card-body">
-                                links of categories
+                                <div class="form-group">
+                                    <label for="FormControlSelect">City, State</label>
+                                    <select multiple class="form-control" id="FormControlSelect">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <a className="text-primary">lowTohigh</a>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        <a className="text-primary">highTolow</a>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Deparments</a>
-                        <a className="btn btn-primary" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a className="nav-link" href="#">Deparments</a>
+                        <a className="btn btn-success" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Category </a>
                         <div className="collapse" id="collapseExample4">
                             <div className="card card-body">
-                                links of categories
+                                <div class="form-group">
+                                    <label for="FormControlSelect">City, State</label>
+                                    <select multiple class="form-control" id="FormControlSelect">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        <a className="text-primary">lowTohigh</a>
+                                    </label>
+                                </div>
+                                <div className="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        <a className="text-primary">highTolow</a>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </nav>
                 </div>
