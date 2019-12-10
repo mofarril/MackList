@@ -1,4 +1,4 @@
-const db = require("../../models/ad")
+const db = require("../../models")
 const router = require("express").Router();
 const adController = require("../../controllers/adController");
 const cheerio = require("cheerio")
@@ -29,21 +29,24 @@ router.get("/scrape", function (req, res) {
   axios.get("https://en.wikipedia.org/wiki/List_of_United_States_cities_by_area")
     .then(function (response) {
       var $ = cheerio.load(response.data);
-    })
+      console.log(response.data)
 
-    $("tbody tr").each(function(i, element){
-      var result = {};
 
-      result.city= $(this)
-      .find("a")
-      .attr("title");
+      $("tbody tr td").each(function (i, element) {
+        var result = {};
+        console.log(element)
+        result.city = $(this)
+          .find("a")
+          .attr("href")
 
-      db.City.create(result)
-      .then(function(dbCity){
-        console.log(dbCity)
-      })
-      .catch(function(err){
-        console.log(err)
+
+        db.City.create(result)
+          .then(function (dbCity) {
+            console.log(dbCity)
+          })
+          .catch(function (err) {
+            console.log(err)
+          }); console.log(result)
       })
     })
 })
