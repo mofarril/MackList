@@ -268,6 +268,86 @@ const cityState = [
         id: 54,
         city: "Boise",
         state: "Idaho"
+    },
+    {
+        id: 55,
+        city: "Chicago",
+        state: "Illinois"
+    },
+    {
+        id: 56,
+        city: "Indianapolis",
+        state: "Indiana"
+    },
+    {
+        id: 57,
+        city: "Fort Wayne",
+        state: "Indiana"
+    },
+    {
+        id: 58,
+        city: "Des Moines",
+        state: "Iowa"
+    },
+    {
+        id: 59,
+        city: "Wichita",
+        state: "Kansas"
+    },
+    {
+        id: 60,
+        city: "Kansas City",
+        state: "Kansas"
+    },
+    {
+        id: 61,
+        city: "Louisville",
+        state: "Kentucky"
+    },
+    {
+        id: 62,
+        city: "Lexington",
+        state: "Kentucky"
+    },
+    {
+        id: 63,
+        city: "New Orleans",
+        state: "Louisiana"
+    },
+    {
+        id: 64,
+        city: "Shreveport",
+        state: "Louisiana"
+    },
+    {
+        id: 65,
+        city: "Baton Rouge",
+        state: "Louisiana"
+    },
+    {
+        id: 66,
+        city: "Ellsworth",
+        state: "Maine"
+    },
+    {
+        id: 67,
+        city: "Caribou",
+        state: "Maine"
+    },
+    {
+        id: 68,
+        city: "Baltimore",
+        state: "Maryland"
+    },
+    {
+        id: 69,
+        city: "Detroit",
+        state: "Michigan"
+    },
+    {
+        id: 70,
+        city: "Hibbing",
+        state: "Minnesota"
     }
 ]
 
