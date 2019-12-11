@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import ShowAds from "./ShowAds"
-import cityState from "../utils/cityState"
+import {cityState, State} from "../utils/cityState"
 
 
 

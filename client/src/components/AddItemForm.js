@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
+import {cityState, State} from "../utils/cityState"
+
 
 
 class Form extends Component {
@@ -18,8 +20,18 @@ class Form extends Component {
     sellerContactName: "",
     sellerContactPhone: "",
     sellerContactEmail: "",
-    message: ""
+    message: "",
+
+    cities: []
+
   };
+
+  updateCities = () => {
+    const arr = cityState.filter(ele => {
+      return ele.state === this.state.locationState
+    })
+    this.setState({cities: arr})
+  }
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -27,6 +39,7 @@ class Form extends Component {
     this.setState({
       [name]: value
     });
+    
   };
 
   handleFormSubmit = event => {
@@ -72,7 +85,7 @@ class Form extends Component {
     return (
       <div>
         <form className="form" onSubmit={this.handleFormSubmit}>
-         <h3>Ad posted by: {user}</h3>
+          <h3>Ad posted by: {user}</h3>
 
           <label>Title (required)</label>
           <Input
@@ -112,24 +125,42 @@ class Form extends Component {
             required
             title="Please enter numeric value"
           />
-          <label>City (required)</label>
-          <Input
-            value={this.state.locationCity}
-            name="locationCity"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="City"
-            required
-          />
           <label>State (required)</label>
           <Input
             value={this.state.locationState}
             name="locationState"
+            list="state"
             onChange={this.handleInputChange}
             type="text"
             required
             placeholder="State"
           />
+
+          <datalist id="state">
+            {State.map(ele => {
+              console.log(ele)
+              return <option>{ele.state}</option>
+            })}
+          </datalist>
+
+          <label>City (required)</label>
+          <Input
+            value={this.state.locationCity}
+            name="locationCity"
+            list="city"
+            onChange={this.handleInputChange}
+            onFocus = {this.updateCities}
+            type="text"
+            placeholder="City"
+            required
+          />
+          <datalist id="city">
+          {this.state.cities.map(ele => {
+              console.log(ele)
+              return <option>{ele.city}</option>
+            })}
+          </datalist>
+
           <label>Contact Name (required)</label>
           <Input
             value={this.state.sellerContactName}

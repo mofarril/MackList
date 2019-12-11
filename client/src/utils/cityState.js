@@ -1,4 +1,4 @@
-const cityState = [
+export const cityState = [
     {
         id: 1,
         city: "Sitka",
@@ -271,4 +271,14 @@ const cityState = [
     }
 ]
 
-export default cityState
+ export const State = [
+    {   
+        state: "Georgia",
+    },
+    {
+        state: "Idaho",
+    },
+    { 
+        state: "Alabama",
+    },
+]
