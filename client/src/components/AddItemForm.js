@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
-import {cityState, State, Cities} from "../utils/cityState"
+import {cityState, CitiesAndState} from "../utils/cityState"
 
 
 
@@ -27,7 +27,7 @@ class Form extends Component {
   };
 
   updateCities = () => {
-    const arr = Cities.filter(ele => {
+    const arr = CitiesAndState.filter(ele => {
       return ele.state === this.state.locationState
     })
     var arr1 =[]
@@ -145,7 +145,7 @@ class Form extends Component {
           />
 
           <datalist id="state">
-            {State.map(ele => {
+            {CitiesAndState.map(ele => {
             //  console.log(ele)
               return <option>{ele.state}</option>
             })}
