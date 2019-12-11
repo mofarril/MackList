@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
-import {cityState, State} from "../utils/cityState"
+import {cityState, State, Cities} from "../utils/cityState"
 
 
 
@@ -27,10 +27,18 @@ class Form extends Component {
   };
 
   updateCities = () => {
-    const arr = cityState.filter(ele => {
+    const arr = Cities.filter(ele => {
       return ele.state === this.state.locationState
     })
-    this.setState({cities: arr})
+    var arr1 =[]
+    arr.map(ele => {
+      console.log(ele)
+      for(let i=0; i<ele.cities.length;i++){
+        arr1.push(ele.cities[i])
+    }
+    })
+    this.setState({cities: arr1})
+    console.log(this.state.cities)
   }
 
   handleInputChange = event => {
@@ -138,7 +146,7 @@ class Form extends Component {
 
           <datalist id="state">
             {State.map(ele => {
-              console.log(ele)
+            //  console.log(ele)
               return <option>{ele.state}</option>
             })}
           </datalist>
@@ -157,7 +165,9 @@ class Form extends Component {
           <datalist id="city">
           {this.state.cities.map(ele => {
               console.log(ele)
-              return <option>{ele.city}</option>
+              
+              return <option>{ele}</option>
+            
             })}
           </datalist>
 
