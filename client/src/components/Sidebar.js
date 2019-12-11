@@ -8,9 +8,34 @@ import cityState from "../utils/cityState"
 class Sidebar extends Component {
 
     state = {
-        city: []
+        city: [],
+        suggestions: []
     }
 
+    onTextChange = (e) => {
+        const value = e.target.value;
+        let suggestions = [];
+        if (value.length > 0) {
+            const regex = new RegExp(`^${value}`, 'i');
+            suggestions = this.cityState.sort().filter(v => regex.test(v))
+        }
+        this.setState(() => ({ suggestions }))
+    }
+
+    renderSuggestions = () => {
+        const { suggestions } = this.state;
+        if (suggestions.length === 0) {
+            return null
+        }
+        return (
+
+            suggestions.map(ele => {
+                return <option>{ele.city}</option>
+            })
+
+        )
+
+    }
     componentDidMount = () => {
         console.log("Hello 12" + JSON.stringify(cityState[0].city))
     }
@@ -45,10 +70,9 @@ class Sidebar extends Component {
                             <div className="card card-body">
                                 <div className="form-group">
                                     <label for="FormControlSelect">City, State</label>
+                                    <input onChange={this.onTextChange} type="text" className="form-control"></input>
                                     <select multiple className="form-control" id="FormControlSelect">
-                                        {cityState.map(ele => {
-                                        return <option>{ele.city}</option>
-                                        })}
+                                        {this.renderSuggestions()}
                                     </select>
                                 </div>
                                 <div className="form-check">
