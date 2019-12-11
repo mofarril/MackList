@@ -24,5 +24,9 @@ export default {
     forgotPassword: function(UserData){
         //console.log(UserData)
         return axios.post("/api/users/forgotPassword", UserData)
+    },
+    postAd: function(UserData){
+        console.log(UserData)
+        return axios.post("/api/ads", UserData)
     }
 }

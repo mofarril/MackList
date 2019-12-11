@@ -58,7 +58,7 @@ class UserPost extends Component {
                                 <div className="modal-body">
                                     <input type="file" className="custom-file-input" id="customFile" />
                                     <label className="custom-file-label" for="#customFile">Choose file</label>
-                                    <Form />
+                                    <Form user={user}/>
                                 </div>
                             </div>
                         </div>
