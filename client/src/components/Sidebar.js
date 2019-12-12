@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import ShowAds from "./ShowAds"
-import { Input } from "../components/input";
-import { CitiesAndState, State } from "../utils/cityState"
+import { CitiesAndState } from "../utils/cityState"
 
 
 
@@ -67,7 +66,7 @@ class Sidebar extends Component {
                         <div className="collapse" id="cars">
                             <div className="card card-body">
                                 <div className="form-group">
-                                    <label for="FormControlSelect">State</label>
+                                    <label for="FormControlSelect">State(required)</label>
                                     <input
                                         type="text"
                                         value={this.state.locationState}
