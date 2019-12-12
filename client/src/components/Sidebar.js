@@ -1,44 +1,42 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import ShowAds from "./ShowAds"
-import {cityState, State} from "../utils/cityState"
+import { Input } from "../components/input";
+import { CitiesAndState, State } from "../utils/cityState"
 
 
 
 class Sidebar extends Component {
 
     state = {
-        city: [],
-        suggestions: []
+        cities: [],
+        locationCity: "",
+        locationState: "",
     }
 
-    onTextChange = (e) => {
-        const value = e.target.value;
-        let suggestions = [];
-        if (value.length > 0) {
-            const regex = new RegExp(`^${value}`, 'i');
-            suggestions = this.cityState.sort().filter(v => regex.test(v))
-        }
-        this.setState(() => ({ suggestions }))
+    updateCities = () => {
+        const arr = CitiesAndState.filter(ele => {
+            return ele.state === this.state.locationState
+        })
+        var arr1 = []
+        arr.map(ele => {
+            console.log(ele)
+            for (let i = 0; i < ele.cities.length; i++) {
+                arr1.push(ele.cities[i])
+            }
+        })
+        this.setState({ cities: arr1 })
+        console.log(this.state.cities)
     }
 
-    renderSuggestions = () => {
-        const { suggestions } = this.state;
-        if (suggestions.length === 0) {
-            return null
-        }
-        return (
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
 
-            suggestions.map(ele => {
-                return <option>{ele.city}</option>
-            })
-
-        )
-
-    }
-    componentDidMount = () => {
-        console.log("Hello 12" + JSON.stringify(cityState[0].city))
-    }
+    };
     lowTohigh = () => {
         Axios.get("/api/ads/lowTohigh")
             .then(response => {
@@ -69,11 +67,40 @@ class Sidebar extends Component {
                         <div className="collapse" id="cars">
                             <div className="card card-body">
                                 <div className="form-group">
-                                    <label for="FormControlSelect">City, State</label>
-                                    <input onChange={this.onTextChange} type="text" className="form-control"></input>
-                                    <select multiple className="form-control" id="FormControlSelect">
-                                        {this.renderSuggestions()}
-                                    </select>
+                                    <label for="FormControlSelect">State</label>
+                                    <input
+                                        type="text"
+                                        value={this.state.locationState}
+                                        name="locationState"
+                                        onChange={this.handleInputChange}
+                                        placeholder="State"
+                                        required
+                                        list="state" className="form-control">
+                                    </input>
+                                    <datalist id="state">
+                                        {CitiesAndState.map(ele => {
+                                            //  console.log(ele)
+                                            return <option>{ele.state}</option>
+                                        })}
+                                    </datalist>
+
+                                    <label for="FormControlSelect">City</label>
+                                    <input
+                                        type="text"
+                                        value={this.state.locationCity}
+                                        name="locationCity"
+                                        onChange={this.handleInputChange}
+                                        onFocus={this.updateCities}
+                                        placeholder="City"
+                                        required
+                                        list="city" className="form-control">
+                                    </input>
+                                    <datalist id="city">
+                                        {this.state.cities.map(ele => {
+                                            console.log(ele)
+                                            return <option>{ele}</option>
+                                        })}
+                                    </datalist>
                                 </div>
                                 <div className="form-check">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
