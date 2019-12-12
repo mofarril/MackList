@@ -24,7 +24,7 @@ class UserPost extends Component {
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    <Form />
+                                    <Form user={user}/>
                                 </div>
                             </div>
                         </div>

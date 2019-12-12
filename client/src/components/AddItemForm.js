@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import Axios from "axios";
+import API from "../utils/API"
+import {cityState, CitiesAndState} from "../utils/cityState"
+
 
 
 class Form extends Component {
   // Setting the component's initial state
   state = {
+    owner: "",
     productTitle: "",
     productImage: "",
     productDescription: "",
@@ -18,52 +22,45 @@ class Form extends Component {
     sellerContactPhone: "",
     sellerContactEmail: "",
     // sellerPreferedContact: false
-    imagePath: ""
+    imagePath: "",
+    message: "",
+
+    cities: []
+
   };
+
+  updateCities = () => {
+    const arr = CitiesAndState.filter(ele => {
+      return ele.state === this.state.locationState
+    })
+    var arr1 =[]
+    arr.map(ele => {
+      console.log(ele)
+      for(let i=0; i<ele.cities.length;i++){
+        arr1.push(ele.cities[i])
+    }
+    })
+    this.setState({cities: arr1})
+    console.log(this.state.cities)
+  }
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
+    this.setState({
+      [name]: value
+    });
+    
   };
 
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    // if (!this.state.productTitle || !this.state.productImage || !this.state.locationCity || this.state.sellerContactEmail) {
-    //   alert("Fill out the Required Fields of your post please!");
-    // } else if (this.state.productDescription.length < 6) {
 
-    // }
-    // this.setState({
-    //   productTitle: "",
-    //   productImage: "",
-    //   productDescription: "",
-    //   productCost: "",
-
-    //   locationCity: "",
-    //   locationState: "",
-
-    //   sellerContactName: "",
-    //   sellerContactPhone: "",
-    //   sellerContactEmail: "",
-    //   sellerPreferedContact: ""
-
-    // });
     const {productTitle, productImage,productDescription,productCost,locationCity,locationState,sellerContactName,sellerContactPhone,sellerContactEmail} = this.state;
     let formData = new FormData();
 
-    // formData.append("productTitle", productTitle);
     formData.append("productImage", productImage);
-    // formData.append("productDescription", productDescription);
-    // formData.append("productCost", productCost);
-    // formData.append("locationCity", locationCity);
-    // formData.append("locationState",locationState);
-    // formData.append("sellerContatName", sellerContactName);
-    // formData.append("sellerContactPhone", sellerContactPhone);
-    // formData.append("sellerContactEmail", sellerContactEmail);
 
     console.log("Form Data:", formData)
 
@@ -78,7 +75,7 @@ class Form extends Component {
     // })
 
     Axios({
-      url:"http://localhost:3000/user-post",
+      url:"/user-post",
       method: "POST",
     })
     .then((res)=>{
@@ -90,17 +87,48 @@ class Form extends Component {
       alert("File failed to upload. Please check file type. JPEG and PNG files only")
     })
 
+    API.postAd({
+      owner: this.props.user,
+      productTitle: this.state.productTitle,
+      productImage: this.state.productImage,
+      productDescription: this.state.productDescription,
+      productCost: this.state.productCost,
+
+      locationCity: this.state.locationCity,
+      locationState: this.state.locationState,
+
+      sellerContactName: this.state.sellerContactName,
+      sellerContactPhone: this.state.sellerContactPhone,
+      sellerContactEmail: this.state.sellerContactEmail,
+    }).then(results => {
+      this.setState({
+        productTitle: "",
+        productImage: "",
+        productDescription: "",
+        productCost: "",
+
+        locationCity: "",
+        locationState: "",
+
+        sellerContactName: "",
+        sellerContactPhone: "",
+        sellerContactEmail: "",
+        message: "Item added Successfully"
+      });
+    }).catch(err => console.log(err));
+
+
   };
 
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
+    const user = this.props.user;
     return (
       <div>
-        <p>
-          Selling: {this.state.productTitle} {this.state.productImage}
-        </p>
-        <form encType="multipart/form-data" className="form" onSubmit={this.handleFormSubmit}>
-          <label>Title</label>
+        <form className="form" onSubmit={this.handleFormSubmit}>
+          <h3>Ad posted by: {user}</h3>
+
+          <label>Title (required)</label>
           <Input
             value={this.state.productTitle}
             name="productTitle"
@@ -109,7 +137,7 @@ class Form extends Component {
             required
             placeholder="Product Title"
           />
-          <label>Image</label>
+          <label>Image (required)</label>
           <Input
             value={this.state.productImage}
             name="productImage"
@@ -118,7 +146,7 @@ class Form extends Component {
             required
             placeholder="Product Image"
           />
-          <label>Description</label>
+          <label>Description (required)</label>
           <TextArea
             value={this.state.productDescription}
             name="productDescription"
@@ -127,7 +155,7 @@ class Form extends Component {
             placeholder="Product Description"
             required
           />
-          <label>Price</label>
+          <label>Price (required)</label>
           <Input
             value={this.state.productCost}
             name="productCost"
@@ -136,27 +164,47 @@ class Form extends Component {
             pattern="[0-9]{1,}"
             placeholder="Price"
             required
-            title = "Please enter numeric value"
+            title="Please enter numeric value"
           />
-          <label>City</label>
-          <Input
-            value={this.state.locationCity}
-            name="locationCity"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="City"
-            required
-          />
-          <label>State</label>
+          <label>State (required)</label>
           <Input
             value={this.state.locationState}
             name="locationState"
+            list="state"
             onChange={this.handleInputChange}
             type="text"
             required
             placeholder="State"
           />
-          <label>Contact Name</label>
+
+          <datalist id="state">
+            {CitiesAndState.map(ele => {
+            //  console.log(ele)
+              return <option>{ele.state}</option>
+            })}
+          </datalist>
+
+          <label>City (required)</label>
+          <Input
+            value={this.state.locationCity}
+            name="locationCity"
+            list="city"
+            onChange={this.handleInputChange}
+            onFocus = {this.updateCities}
+            type="text"
+            placeholder="City"
+            required
+          />
+          <datalist id="city">
+          {this.state.cities.map(ele => {
+              console.log(ele)
+              
+              return <option>{ele}</option>
+            
+            })}
+          </datalist>
+
+          <label>Contact Name (required)</label>
           <Input
             value={this.state.sellerContactName}
             name="sellerContactName"
@@ -165,7 +213,7 @@ class Form extends Component {
             required
             placeholder="Contact Name"
           />
-          <label>Contact Email</label>
+          <label>Contact Email (required)</label>
           <Input
             value={this.state.sellerContactEmail}
             name="sellerContactEmail"
@@ -180,19 +228,21 @@ class Form extends Component {
             name="sellerContactPhone"
             onChange={this.handleInputChange}
             type="text"
-            required
             placeholder="Contact Phone"
             pattern="[0-9]{1,}"
-            title = "Please enter numeric value"
+            title="Please enter numeric value"
           />
-          <label>Preferred Contact Method</label><br/>
-          <input type="radio" name="sellerContactEmail" value="Email" /> Email<br/>
-          <input type="radio" name="sellerCPhone" value="Phone" /> Phone<br/><br/>
-          
-          <button  type="submit" className="btn btn-success">Submit</button>
+          <label>Preferred Contact Method</label><br />
+          <input type="radio" name="sellerPreferedContact" value="Email" /> Email<br />
+          <input type="radio" name="sellerPreferedContact" value="Phone" /> Phone<br /><br />
+
+          <button type="submit" className="btn btn-success">Submit</button>
+          <p className="text-success">{this.state.message}</p>
         </form>
       </div>
     );
   }
 }
 export default Form;
+
+

@@ -67,7 +67,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/macklist",
 }
 );
 
-app.post('/', upload.single('productImage'), (req, res) => {
+app.post('/user-post', upload.single('productImage'), (req, res) => {
   res.send( req.file);
 });
 
