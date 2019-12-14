@@ -15,14 +15,14 @@ router
   .delete(adController.remove);
 
 // Matches with "/api/ads/lowTohigh"
-router.get("/lowTohigh", function (req, res) {
-  db.Ad.sort(function (a, b) { return a - b });
-})
+router
+.route("/lowTohigh")
+.get(adController.findLowPrice)
 
 // Matches with "/api/ads/highTolow"
-router.get("/highTolow", function (req, res) {
-  db.Ad.sort(function (a, b) { return b - a });
-})
+router
+.route("/highTolow")
+.get(adController.findHighPrice)
 
 
 
