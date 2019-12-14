@@ -9,11 +9,13 @@ const styles = {
     },
     content:{
         padding: 20,
-    }
+    },
 };
 function AdCard(props) {
     return(
-<div className ="card">
+
+
+<div className ="card" {...props}>
     <div className ="img-container">
         <img alt= {props.name} src= {props.image}/>
     </div>

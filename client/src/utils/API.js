@@ -31,5 +31,9 @@ export default {
     },
     getAd: function(UserData){
         return axios.get("/api/ads", UserData)
+    },
+    getAdById: function(UserData){
+        console.log(UserData)
+        return axios.get("/api/ads/" + UserData.id)
     }
 }
