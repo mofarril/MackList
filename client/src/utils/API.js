@@ -32,8 +32,14 @@ export default {
     getAd: function(UserData){
         return axios.get("/api/ads", UserData)
     },
+<<<<<<< HEAD
     lowtohigh: function(UserData){
         console.log(UserData)
         return axios.get("/api/ads/lowTohigh",UserData)
+=======
+    getAdById: function(UserData){
+        console.log(UserData)
+        return axios.get("/api/ads/" + UserData.id)
+>>>>>>> a882d29c230130185b624834bcd2c9ed77b514b4
     }
 }
