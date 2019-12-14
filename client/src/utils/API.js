@@ -28,5 +28,8 @@ export default {
     postAd: function(UserData){
         console.log(UserData)
         return axios.post("/api/ads", UserData)
+    },
+    getAd: function(UserData){
+        return axios.get("/api/ads", UserData)
     }
 }

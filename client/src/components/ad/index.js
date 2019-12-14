@@ -11,7 +11,7 @@ const styles = {
         padding: 20,
     }
 };
-function adCard(props) {
+function AdCard(props) {
     return(
 <div className ="card">
     <div className ="img-container">
@@ -31,4 +31,4 @@ function adCard(props) {
     );
 }
 
-export default adCard;
+export default AdCard;
