@@ -7,11 +7,28 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const cors = require("cors");
-const multer = require("multer");
+// const multer = require("multer");
+
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//       cb(null, "./uploads");
+//   },
+//   filename: function (req, file, cb) {
+//       cb(null, Date.now() + file.originalname);
+//       }
+// });
+// const upload = multer({
+//   storage: storage,
+//   limits:{
+//       fileSize: 1024*1024*5
+//   },
+//   fileFilter:fileFilter
+// }); 
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // app.use(morgan('dev'))
 // app.use(
@@ -20,33 +37,15 @@ app.use(express.json());
 // 	})
 // )
 app.use(bodyParser.json())
+// app.use("uploads", express.static('../../client/uploads'))
+
+// app.get("/", (req, res)=>{
+//   res.sendFile(__dirname + "../../client/index.html")
+// })
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  // app.use(express.static("client/build"));
-  app.use(express.static("./public/index.html"));
-
+  app.use(express.static("client/build"));
 }
-// Multer this will store the image in memory and upload the image into the uplaod folder 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-      cb(null, "./client/uploads");
-  },
-  filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
-      }
-});
-
-
-// this function will reject any file that is not either a jpeg or png
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpg" || file.mimetype === "image/png") {
-      cb(null, true);
-  } else {
-      cb(null, false)
-  }
-};
-
-var upload = multer({ storage: storage, fileFilter:fileFilter })
 
 
 app.use(cors());
@@ -67,9 +66,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/macklist",
 }
 );
 
-app.post('/user-post', upload.single('productImage'), (req, res) => {
-  res.send( req.file);
-});
+// app.post("/", upload.single('productImage'), (req, res) => {
+//   res.send();
+// });
 
 // Start the API server
 app.listen(PORT, function() {
