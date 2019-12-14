@@ -7,23 +7,6 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const cors = require("cors");
-// const multer = require("multer");
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//       cb(null, "./uploads");
-//   },
-//   filename: function (req, file, cb) {
-//       cb(null, Date.now() + file.originalname);
-//       }
-// });
-// const upload = multer({
-//   storage: storage,
-//   limits:{
-//       fileSize: 1024*1024*5
-//   },
-//   fileFilter:fileFilter
-// }); 
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -37,11 +20,7 @@ app.use(express.json());
 // 	})
 // )
 app.use(bodyParser.json())
-// app.use("uploads", express.static('../../client/uploads'))
 
-// app.get("/", (req, res)=>{
-//   res.sendFile(__dirname + "../../client/index.html")
-// })
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -65,10 +44,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/macklist",
   useNewUrlParser: true
 }
 );
-
-// app.post("/", upload.single('productImage'), (req, res) => {
-//   res.send();
-// });
 
 // Start the API server
 app.listen(PORT, function() {
