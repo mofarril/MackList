@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
-import {cityState, CitiesAndState} from "../utils/cityState"
+import { CitiesAndState} from "../utils/cityState"
+import {Department} from "../utils/department"
 
 
 
@@ -12,6 +13,7 @@ class Form extends Component {
     productTitle: "",
     productImage: "",
     productDescription: "",
+    productDepartment: "",
     productCost: "",
 
     locationCity: "",
@@ -59,6 +61,7 @@ class Form extends Component {
       productTitle: this.state.productTitle,
       productImage: this.state.productImage,
       productDescription: this.state.productDescription,
+      productDepartment: this.state.productDepartment,
       productCost: this.state.productCost,
 
       locationCity: this.state.locationCity,
@@ -122,6 +125,23 @@ class Form extends Component {
             placeholder="Product Description"
             required
           />
+          <label>Department (required)</label>
+          <Input
+            value={this.state.productDepartment}
+            name="productDepartment"
+            list="department"
+            onChange={this.handleInputChange}
+            type="text"
+            required
+            placeholder="Department"
+          />
+
+          <datalist id="department">
+            {Department.map(ele => {
+            //  console.log(ele)
+              return <option>{ele.department}</option>
+            })}
+          </datalist>
           <label>Price (required)</label>
           <Input
             value={this.state.productCost}
