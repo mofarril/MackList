@@ -24,7 +24,8 @@ class Sidebar extends Component {
         locationCity: "",
         locationState: "",
         department: "",
-        allposts: []
+        allposts: [],
+        filterAds: []
     }
     componentDidMount = () => {
         API.getAd({})
@@ -57,10 +58,15 @@ class Sidebar extends Component {
         });
 
     };
+    
     lowTohigh = () => {
-        Axios.get("/api/ads/lowTohigh")
+        console.log("test")
+        API.lowtohigh({})
             .then(response => {
                 console.log(response)
+                this.setState({filterAds: response.data})
+                console.log("lowTohigh: " + this.state.filterAds)
+                
             })
             .catch(err => {
                 console.log(err)
