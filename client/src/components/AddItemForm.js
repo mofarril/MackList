@@ -2,27 +2,13 @@ import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import Axios from "axios";
 import API from "../utils/API"
-<<<<<<< HEAD
-import { cityState, CitiesAndState } from "../utils/cityState"
-=======
 import { CitiesAndState} from "../utils/cityState"
 import {Department} from "../utils/department"
->>>>>>> e6904b11bd5b7bf3110053c377fe6fff50f697d9
 
 
 
 class Form extends Component {
   // Setting the component's initial state
-<<<<<<< HEAD
-  constructor() {
-    super()
-    this.state = {
-      owner: "",
-      productTitle: "",
-      productImage: "",
-      productDescription: "",
-      productCost: "",
-=======
   state = {
     owner: "",
     productTitle: "",
@@ -30,7 +16,6 @@ class Form extends Component {
     productDescription: "",
     productDepartment: "",
     productCost: "",
->>>>>>> e6904b11bd5b7bf3110053c377fe6fff50f697d9
 
       locationCity: "",
       locationState: "",
