@@ -1,16 +1,17 @@
 var express =require("express");
 const  multer = require("multer");
 const adRouter = express.Router();
+// const db = require("../../models")
+const path = require("path")
+
 
 // Multer this will store the image in memory and upload the image into the uplaod folder 
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./uploads");
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + file.originalname);
-        }
-  });
+    destination: "/uploads",
+    filename: function(req, file, cb){
+       cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+    }
+ });
   
   
   // this function will reject any file that is not either a jpeg or png
@@ -55,7 +56,17 @@ adRouter.route("/")
         });
     })
     .catch((err)=> next(err));
-});
+})
+.get(function (req,res){
+    Ad.find({},"productImage", function(err,ad){
+        if(err)
+        res.send(err);
+        console.log(ad);
+
+        res.contentType("json");
+        res.send(ad);
+    }).sort({})
+})
 // Router.post('/user-post', upload.single('productImage'), (req, res) => {
 //     res.send(req.file);
 //   });

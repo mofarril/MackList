@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
-import Axios from "axios";
 import API from "../utils/API"
-import { CitiesAndState} from "../utils/cityState"
-import {Department} from "../utils/department"
+import { CitiesAndState } from "../utils/cityState"
+import { Department } from "../utils/department"
+import Axios from "axios";
 
 
 
@@ -17,21 +17,19 @@ class Form extends Component {
     productDepartment: "",
     productCost: "",
 
-      locationCity: "",
-      locationState: "",
+    locationCity: "",
+    locationState: "",
 
-      sellerContactName: "",
-      sellerContactPhone: "",
-      sellerContactEmail: "",
-      // sellerPreferedContact: false
-      inputPath: "",
-      message: "",
+    sellerContactName: "",
+    sellerContactPhone: "",
+    sellerContactEmail: "",
+    message: "",
 
-      cities: []
-
-    };
-
-  }
+    cities: []
+    // this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    // this.handleInputChange = this.handleInputChange.bind(this),
+    // this.fileUpload = this.fileUpload.bind(this)
+  };
 
   updateCities = () => {
     const arr = CitiesAndState.filter(ele => {
@@ -51,41 +49,40 @@ class Form extends Component {
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
-    // console.log(event.target.files[0])
     this.setState({
-      [name]: value
+      [name]: value 
     });
-    switch (event.target.name) {
-      case "productImage":
-        this.setState({ productImage: event.target.files[0] });
-        break;
-      default:
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
+    // this.setState({ productImage: event.target.pr[0] })
   };
 
+  handleFileChange = event => {
+    // Getting the value and name of the input which triggered the change
+    const { name, files } = event.target;
+    this.setState({
+      [name]: files[0] 
+    });
+    // this.setState({ productImage: event.target.pr[0] })
+  };
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    // this.fileUpload(this.state.productImage).then((res) => {
+    //   console.log(res.data);
+    // });
 
-    const { productTitle, productImage, productDescription, productCost, locationCity, locationState, sellerContactName, sellerContactPhone, sellerContactEmail } = this.state;
-    let formData = new FormData();
-
-    formData.append("productImage", productImage);
-
-    console.log("Form Data:", formData)
-
-    Axios.post("/", formData)
-      .then((result) => {
-        this.setState({ inputPath: result.data })
-        console.log("File uploaded :", result)
-      })
-      .catch(function (err) {
-        console.log("Uh Oh! Error uploading: ", err)
-        // alert("File failed to upload. Please check file type. JPEG and PNG files only")
-      })
-
+    const formData = new FormData();
+    formData.append("productImage", this.state.productImage)
+    const config = {
+      header: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    Axios.post("/user-post",formData,config)
+    .then((response) => {
+        alert("The file is successfully uploaded");
+    }).catch((error) => {
+      console.log(error);
+});    
     API.postAd({
       owner: this.props.user,
       productTitle: this.state.productTitle,
@@ -122,16 +119,15 @@ class Form extends Component {
 
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
-    const { productTitle, productImage, productDescription, productCost, locationCity, locationState, sellerContactName, sellerContactPhone, sellerContactEmail } = this.state;
     const user = this.props.user;
     return (
       <div>
-        <form action="/user-post" method="POST" encType="multipart/form-data" className="form" onSubmit={this.handleFormSubmit}>
+        <form className="form" onSubmit={this.handleFormSubmit}>
           <h3>Ad posted by: {user}</h3>
 
           <label>Title (required)</label>
           <Input
-            value={productTitle}
+            value={this.state.productTitle}
             name="productTitle"
             onChange={this.handleInputChange}
             type="text"
@@ -140,16 +136,15 @@ class Form extends Component {
           />
           <label>Image (required)</label>
           <Input
-            value={productImage}
             name="productImage"
-            onChange={this.handleInputChange}
+            onChange={this.handleFileChange}
             type="file"
             required
             placeholder="Product Image"
           />
           <label>Description (required)</label>
           <TextArea
-            value={productDescription}
+            value={this.state.productDescription}
             name="productDescription"
             onChange={this.handleInputChange}
             type="text"
@@ -169,13 +164,13 @@ class Form extends Component {
 
           <datalist id="department">
             {Department.map(ele => {
-            //  console.log(ele)
+              //  console.log(ele)
               return <option>{ele.department}</option>
             })}
           </datalist>
           <label>Price (required)</label>
           <Input
-            value={productCost}
+            value={this.state.productCost}
             name="productCost"
             onChange={this.handleInputChange}
             type="text"
@@ -186,7 +181,7 @@ class Form extends Component {
           />
           <label>State (required)</label>
           <Input
-            value={locationState}
+            value={this.state.locationState}
             name="locationState"
             list="state"
             onChange={this.handleInputChange}
@@ -204,7 +199,7 @@ class Form extends Component {
 
           <label>City (required)</label>
           <Input
-            value={locationCity}
+            value={this.state.locationCity}
             name="locationCity"
             list="city"
             onChange={this.handleInputChange}
@@ -224,7 +219,7 @@ class Form extends Component {
 
           <label>Contact Name (required)</label>
           <Input
-            value={sellerContactName}
+            value={this.state.sellerContactName}
             name="sellerContactName"
             onChange={this.handleInputChange}
             type="text"
@@ -233,7 +228,7 @@ class Form extends Component {
           />
           <label>Contact Email (required)</label>
           <Input
-            value={sellerContactEmail}
+            value={this.state.sellerContactEmail}
             name="sellerContactEmail"
             required
             onChange={this.handleInputChange}
@@ -242,7 +237,7 @@ class Form extends Component {
           />
           <label>Contact Phone</label>
           <Input
-            value={sellerContactPhone}
+            value={this.state.sellerContactPhone}
             name="sellerContactPhone"
             onChange={this.handleInputChange}
             type="text"
@@ -262,5 +257,17 @@ class Form extends Component {
   }
 }
 export default Form;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
