@@ -26,9 +26,10 @@ class Sidebar extends Component {
         locationState: "",
         department: "",
         allposts: [],
-        filterAds: [],
+       // filterAds: [],
         onepost: [],
-        id: []
+        id: [],
+        sort: 0
     }
     componentDidMount = () => {
         API.getAd({})
@@ -69,30 +70,150 @@ class Sidebar extends Component {
         this.setState({
             [name]: value
         });
-
+        
     };
-    
+    filteredSearch = () => {
+        if(this.state.sort === 1){
+            this.lowTohigh()
+        }
+        else if(this.state.sort === -1){
+            this.highTolow()
+        }else{
+        if(this.state.locationCity && this.state.locationState && this.state.department){
+            API.searchItem({
+                locationCity: this.state.locationCity},{locationState: this.state.locationState},{productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState && this.state.department){
+            API.searchItem({
+                locationState: this.state.locationState,productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState && this.state.locationCity){
+            API.searchItem({
+                locationState: this.state.locationState,locationCity:this.state.locationCity
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState){
+            API.searchItem({
+                locationState: this.state.locationState
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.department){
+            API.searchItem({
+                productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }
+    }
+    }
     lowTohigh = () => {
+        this.setState({sort:1})
         console.log("test")
+        if(this.state.locationCity && this.state.locationState && this.state.department){
+            API.lowtohigh({
+                locationCity: this.state.locationCity},{locationState: this.state.locationState},{productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState && this.state.department){
+            API.lowtohigh({
+                locationState: this.state.locationState,productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState && this.state.locationCity){
+            API.lowtohigh({
+                locationState: this.state.locationState,locationCity:this.state.locationCity
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState){
+            API.lowtohigh({
+                locationState: this.state.locationState
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.department){
+            API.lowtohigh({
+                productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else{
         API.lowtohigh({})
             .then(response => {
                 console.log(response)
-                this.setState({filterAds: response.data})
-                console.log("lowTohigh: " + this.state.filterAds)
-                
+                this.setState({allposts: response.data})
             })
             .catch(err => {
                 console.log(err)
             })
+        }
     }
     highTolow = () => {
-        Axios.get("/api/ads/highTolow")
+        this.setState({sort: -1})
+        console.log("test")
+        if(this.state.locationCity && this.state.locationState && this.state.department){
+            API.hightolow({
+                locationCity: this.state.locationCity},{locationState: this.state.locationState},{productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState && this.state.department){
+            API.hightolow({
+                locationState: this.state.locationState,productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState && this.state.locationCity){
+            API.hightolow({
+                locationState: this.state.locationState,locationCity:this.state.locationCity
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.locationState){
+            API.hightolow({
+                locationState: this.state.locationState
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else if(this.state.department){
+            API.hightolow({
+                productDepartment:this.state.department
+            }).then(results => {
+                this.setState({ allposts: results.data })
+            })
+            .catch(err => console.log(err))
+        }else{
+        API.hightolow({})
             .then(response => {
                 console.log(response)
+                this.setState({allposts: response.data})
             })
             .catch(err => {
                 console.log(err)
             })
+        }
     }
     render() {
         return (
@@ -111,6 +232,7 @@ class Sidebar extends Component {
                                 value={this.state.department}
                                 name="department"
                                 onChange={this.handleInputChange}
+                                onSelect={this.filteredSearch}
                                 placeholder=" Select Department"
                                 required
                                 list="department" className="form-control">
@@ -129,6 +251,7 @@ class Sidebar extends Component {
                                 value={this.state.locationState}
                                 name="locationState"
                                 onChange={this.handleInputChange}
+                                onSelect={this.filteredSearch}
                                 placeholder=" Select State"
                                 required
                                 list="state" className="form-control">
@@ -147,6 +270,7 @@ class Sidebar extends Component {
                                 value={this.state.locationCity}
                                 name="locationCity"
                                 onChange={this.handleInputChange}
+                                onSelect={this.filteredSearch}
                                 onFocus={this.updateCities}
                                 placeholder=" Select City"
                                 required
@@ -154,7 +278,7 @@ class Sidebar extends Component {
                             </input>
                             <datalist id="city">
                                 {this.state.cities.map(ele => {
-                                    console.log(ele)
+                                  //  console.log(ele)
                                     return <option>{ele}</option>
                                 })}
                             </datalist>

@@ -5,21 +5,28 @@ module.exports = {
   findAll: function (req, res) {
     db.Ad
       .find(req.query)
-      // .sort({ date: -1 })
+      .sort({ _id: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  searchItem: function(req,res){
+    console.log(req.body)
+    db.Ad
+    .find({$and:[req.body]})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
   },
   findLowPrice: function (req, res) {
     console.log(req.query)
     db.Ad
-      .find(req.query)
+      .find({$and:[req.body]})
       .sort({productCost: 1})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findHighPrice: function (req, res) {
     db.Ad
-      .find(req.query)
+      .find({$and:[req.body]})
       .sort({productCost: -1})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
