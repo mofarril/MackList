@@ -43,7 +43,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  userAd:function(req,res){
+    db.Ad
+    .find(req.body)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
   remove: function (req, res) {
+    console.log("delete " + req)
     db.Ad
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

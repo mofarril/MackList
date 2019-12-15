@@ -46,5 +46,12 @@ export default {
     getAdById: function(UserData){
         console.log(UserData)
         return axios.get("/api/ads/" + UserData.id)
+    },
+    getuserAd: function(UserData){
+        return axios.put("/api/ads/userAd", UserData)
+    },
+    deletebyID: function(UserData){
+        console.log(UserData)
+        return axios.delete("/api/ads/"+ UserData.id)
     }
 }
