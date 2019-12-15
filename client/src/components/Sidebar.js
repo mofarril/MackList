@@ -4,7 +4,7 @@ import ShowAds from "./ShowAds"
 import { CitiesAndState } from "../utils/cityState"
 import { Department } from "../utils/department"
 import API from "../utils/API"
-import AdCard from "../components/ad/index";
+import {AdCard} from "../components/ad/index";
 import showFullAd from "../components/ad/showFullAd";
 import Wrapper from "../components/Wrapper";
 const styles = {
@@ -225,7 +225,7 @@ class Sidebar extends Component {
                                 Advanced Search </div> </nav></div>
 
                     <div className="card-body row ml-3">
-                        <div className="form-group col-sm-3">
+                        <div className="form-group col-lg-3">
                             <label for="FormControlSelect">Department</label>
                             <input
                                 type="text"
@@ -244,7 +244,7 @@ class Sidebar extends Component {
                                 })}
                             </datalist>
                         </div>
-                        <div className="form-group col-sm-3">
+                        <div className="form-group col-lg-3">
                             <label for="FormControlSelect">State(required)</label>
                             <input
                                 type="text"
@@ -263,7 +263,7 @@ class Sidebar extends Component {
                                 })}
                             </datalist>
                         </div>
-                        <div className="form-group col-sm-3">
+                        <div className="form-group col-lg-3">
                             <label for="FormControlSelect">City</label>
                             <input
                                 type="text"
@@ -283,18 +283,18 @@ class Sidebar extends Component {
                                 })}
                             </datalist>
                         </div>
-                        <div className="col-sm-2">
+                        <div className="col-lg-2">
                             <div className="row">
-                                <label className="col-sm-12">Filter by Price</label>
+                                <label className="col-lg-12">Filter by Price</label>
                             </div>
                             <div className="row">
-                                <div className="form-check col-sm-6">
+                                <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
                                     <label className="form-check-label" for="exampleRadios1">
                                         <a className="text-primary">lowTohigh</a>
                                     </label>
                                 </div>
-                                <div className="form-check col-sm-6">
+                                <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
                                     <label className="form-check-label" for="exampleRadios2">
                                         <a className="text-primary">highTolow</a>
@@ -303,8 +303,6 @@ class Sidebar extends Component {
                             </div>
                         </div>
                     </div>
-
-
 
                     {/* <div className="col-lg-9">
                     <ShowAds />
@@ -320,7 +318,6 @@ class Sidebar extends Component {
                         data-toggle="modal" 
                         data-target="#exampleModalLong"
                     />
-
                 })}
 
                 <div className="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -333,12 +330,13 @@ class Sidebar extends Component {
                                 </button>
                             </div>
                             <div className="modal-body">
+
                                 {this.state.onepost.map(ele => {
                                     return(
                                     <p>Title: {ele.productTitle}</p>
                                     )
                                 })}
-           
+
                                 <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
                                     Contact Seller</button></div>
                             {/* // <Form user={user} /> */}
