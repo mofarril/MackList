@@ -13,6 +13,7 @@ module.exports = {
     console.log(req.body)
     db.Ad
     .find({$and:[req.body]})
+    .sort({ _id: -1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
@@ -42,12 +43,6 @@ module.exports = {
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  },
-  userAd:function(req,res){
-    db.Ad
-    .find(req.body)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {
     console.log("delete " + req)

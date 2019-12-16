@@ -28,7 +28,4 @@ router
 router.route("/search")
 .put(adController.searchItem)
 
-router.route("/userAd")
-.put(adController.userAd)
-
 module.exports = router;
