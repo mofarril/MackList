@@ -1,21 +1,27 @@
 var express =require("express");
-const  multer = require("multer");
-const adRouter = express.Router();
-// const db = require("../../models")
+const multer = require("multer");
+const router = express.Router();
+const {Ad} = require("../../models")
 const path = require("path")
-
+const uuid = require("uuid/v4")
+// router.use("/ads", adRoutes)
+const uploadDir = path.join(process.cwd(), "uploads")
 
 // Multer this will store the image in memory and upload the image into the uplaod folder 
 const storage = multer.diskStorage({
-    destination: "/uploads",
-    filename: function(req, file, cb){
-       cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+    destination: function(req, file, cb){
+        cb(null, uploadDir);
+    },
+    filename: function(req, file, cb) {
+        console.log(file)
+        cb(null, uuid() +"__"+ file.originalname);
     }
  });
-  
+
   
   // this function will reject any file that is not either a jpeg or png
   const fileFilter = (req, file, cb) => {
+      console.log("##################### ")
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
         cb(null, true);
     } else {
@@ -25,19 +31,16 @@ const storage = multer.diskStorage({
   
 const upload = multer({
     storage: storage,
-    limits:{
-        fileSize: 1024*1024*5
-    },
     fileFilter:fileFilter
 }); 
 
-adRouter.route("/")
-.post(upload.single("productImage"), (req, res, next)=>{
-    console.log(req.body);
+// adRouter.route("../client/src/pages/user-post")
+router.post("/", upload.single("productImage"), (req, res, next)=>{
+    console.log(req.file);
     const newAd = new Ad({
         owner: req.body.owner ,
         productTitle:req.body.productTitle,
-        productImage:req.file.filename ,
+        productImage: path.join( uploadDir, req.file.filename) ,
         productDescription:req.body.productDescription ,
         productCost:req.body.productCost ,
         locationCity:req.body.locationCity ,
@@ -46,28 +49,25 @@ adRouter.route("/")
         sellerContactPhone: req.body.sellerContactPhone,
         sellerContactEmail: req.body.sellerContactEmail,
     })
-    res.send()
     newAd.save()
     .then((res)=>{
         console.log(res);
         res.status(200).json({
             success: true,
-            document: res
+            message: "Created Ad successfully"
         });
     })
     .catch((err)=> next(err));
 })
-.get(function (req,res){
-    Ad.find({},"productImage", function(err,ad){
-        if(err)
-        res.send(err);
-        console.log(ad);
+// .get(function (req,res){
+//     db.Ad.find({},"productImage", function(err,ad){
+//         if(err)
+//         res.send(err);
+//         console.log(ad);
 
-        res.contentType("json");
-        res.send(ad);
-    }).sort({})
-})
-// Router.post('/user-post', upload.single('productImage'), (req, res) => {
-//     res.send(req.file);
-//   });
-  
+//         res.contentType("json");
+//         res.send(ad);
+//     }).sort({})
+// })
+
+  module.exports= router;

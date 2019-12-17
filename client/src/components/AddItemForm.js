@@ -3,9 +3,7 @@ import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
 import { CitiesAndState } from "../utils/cityState"
 import { Department } from "../utils/department"
-import Axios from "axios";
-
-
+import Axios   from "axios";
 
 class Form extends Component {
   // Setting the component's initial state
@@ -56,63 +54,73 @@ class Form extends Component {
   };
 
   handleFileChange = event => {
-    // Getting the value and name of the input which triggered the change
-    const { name, files } = event.target;
+    // const { name, files } = event.target;
     this.setState({
-      [name]: files[0] 
+      productImage: event.target.files[0] 
     });
-    // this.setState({ productImage: event.target.pr[0] })
+    console.log(event.target.files[0]);
   };
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    // this.fileUpload(this.state.productImage).then((res) => {
-    //   console.log(res.data);
-    // });
 
     const formData = new FormData();
     formData.append("productImage", this.state.productImage)
-    const config = {
+    formData.append("owner", this.props.user)
+    formData.append("productTitle", this.state.productTitle)
+    //formData.append("productImage", this.state.productImage)
+    formData.append("productDescription", this.state.productDescription)
+    formData.append("productDepartment", this.state.productDepartment)
+    formData.append("productCost", this.state.productCost)
+
+    formData.append("locationCity", this.state.locationCity)
+    formData.append("locationState", this.state.locationState)
+
+    formData.append("sellerContactName", this.state.sellerContactName)
+    formData.append("sellerContactPhone", this.state.sellerContactPhone)
+    formData.append("sellerContactEmail", this.state.sellerContactEmail)
+  const config = {
       header: {
         "content-type": "multipart/form-data"
       }
     };
-    Axios.post("/user-post",formData,config)
+    Axios.post("/api/images",formData,config)
     .then((response) => {
+      console.log(response)
         alert("The file is successfully uploaded");
     }).catch((error) => {
       console.log(error);
 });    
-    API.postAd({
-      owner: this.props.user,
-      productTitle: this.state.productTitle,
-      productImage: this.state.productImage,
-      productDescription: this.state.productDescription,
-      productDepartment: this.state.productDepartment,
-      productCost: this.state.productCost,
+    // API.postAd({
+    //   owner: this.props.user,
+    //   productTitle: this.state.productTitle,
+    //   productImage: this.state.productImage,
+    //   productDescription: this.state.productDescription,
+    //   productDepartment: this.state.productDepartment,
+    //   productCost: this.state.productCost,
 
-      locationCity: this.state.locationCity,
-      locationState: this.state.locationState,
+    //   locationCity: this.state.locationCity,
+    //   locationState: this.state.locationState,
 
-      sellerContactName: this.state.sellerContactName,
-      sellerContactPhone: this.state.sellerContactPhone,
-      sellerContactEmail: this.state.sellerContactEmail,
-    }).then(results => {
-      this.setState({
-        productTitle: "",
-        productImage: "",
-        productDescription: "",
-        productCost: "",
+    //   sellerContactName: this.state.sellerContactName,
+    //   sellerContactPhone: this.state.sellerContactPhone,
+    //   sellerContactEmail: this.state.sellerContactEmail,
+    // }).then(results => {
+    //   this.setState({
+    //     productTitle: "",
+    //     productImage: "",
+    //     productDescription: "",
+    //     productCost: "",
 
-        locationCity: "",
-        locationState: "",
+    //     locationCity: "",
+    //     locationState: "",
 
-        sellerContactName: "",
-        sellerContactPhone: "",
-        sellerContactEmail: "",
-        message: "Item added Successfully"
-      });
-    }).catch(err => console.log(err));
+    //     sellerContactName: "",
+    //     sellerContactPhone: "",
+    //     sellerContactEmail: "",
+    //     message: "Item added Successfully"
+    //   });
+    // }).catch(err => console.log(err));
 
 
   };
@@ -210,7 +218,7 @@ class Form extends Component {
           />
           <datalist id="city">
             {this.state.cities.map(ele => {
-              console.log(ele)
+              // console.log(ele)
 
               return <option>{ele}</option>
 
