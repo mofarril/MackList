@@ -30,6 +30,25 @@ export default {
         return axios.post("/api/ads", UserData)
     },
     getAd: function(UserData){
+        console.log("Hi" + UserData)
         return axios.get("/api/ads", UserData)
+    },
+    lowtohigh: function(UserData){
+        return axios.put("/api/ads/lowTohigh",UserData)
+    },
+    hightolow: function(UserData){
+        return axios.put("/api/ads/highTolow",UserData)
+    },
+    searchItem: function(UserData){
+        console.log(UserData)
+        return axios.put("/api/ads/search",UserData)
+    },
+    getAdById: function(UserData){
+        console.log(UserData)
+        return axios.get("/api/ads/" + UserData.id)
+    },
+    deletebyID: function(UserData){
+        console.log(UserData)
+        return axios.delete("/api/ads/"+ UserData.id)
     }
 }

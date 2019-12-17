@@ -2,26 +2,50 @@ const db = require("../models");
 
 // Defining methods for the adController
 module.exports = {
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     db.Ad
       .find(req.query)
-     // .sort({ date: -1 })
+      .sort({ _id: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  searchItem: function(req,res){
+    console.log(req.body)
+    db.Ad
+    .find({$and:[req.body]})
+    .sort({ _id: -1 })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+  findLowPrice: function (req, res) {
+    console.log(req.query)
+    db.Ad
+      .find({$and:[req.body]})
+      .sort({productCost: 1})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findHighPrice: function (req, res) {
+    db.Ad
+      .find({$and:[req.body]})
+      .sort({productCost: -1})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findById: function (req, res) {
     db.Ad
       .find({ _id: req.params.id })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  create: function (req, res) {
     db.Ad
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
+  remove: function (req, res) {
+    console.log("delete " + req)
     db.Ad
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

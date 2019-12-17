@@ -6,7 +6,8 @@ const adController = require("../../controllers/adController");
 // Matches with "/api/ads"
 router.route("/")
   .post(adController.create)
-  .get(adController.findAll);
+  .get(adController.findAll)
+  //.put(adController.findLowPrice)
 
 // Matches with "/api/ads/:id"
 router
@@ -15,15 +16,16 @@ router
   .delete(adController.remove);
 
 // Matches with "/api/ads/lowTohigh"
-router.get("/lowTohigh", function (req, res) {
-  db.Ad.sort(function (a, b) { return a - b });
-})
+router
+.route("/lowTohigh")
+.put(adController.findLowPrice)
 
 // Matches with "/api/ads/highTolow"
-router.get("/highTolow", function (req, res) {
-  db.Ad.sort(function (a, b) { return b - a });
-})
+router
+.route("/highTolow")
+.put(adController.findHighPrice)
 
-
+router.route("/search")
+.put(adController.searchItem)
 
 module.exports = router;

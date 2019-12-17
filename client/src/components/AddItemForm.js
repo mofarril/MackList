@@ -253,9 +253,6 @@ class Form extends Component {
             pattern="[0-9]{1,}"
             title="Please enter numeric value"
           />
-          <label>Preferred Contact Method</label><br />
-          <input type="radio" name="sellerPreferedContact" value="Email" /> Email<br />
-          <input type="radio" name="sellerPreferedContact" value="Phone" /> Phone<br /><br />
 
           <button type="submit" className="btn btn-success">Submit</button>
           <p className="text-success">{this.state.message}</p>

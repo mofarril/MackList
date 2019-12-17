@@ -7,7 +7,7 @@ const adSchema = new Schema({
   productImage: {data: Buffer, type: String, required: false},
   productDescription: { type: String, required: true},
   productDepartment: { type: String, required: true},
-  productCost: {type:String, required: true},
+  productCost: {type: Number, required: true},
   locationCity: {type:String, required: true },
   locationState: {type:String, required: true },
   sellerContactName: {type:String, required: true },

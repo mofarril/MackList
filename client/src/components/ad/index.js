@@ -1,34 +1,47 @@
 import React from "react";
+import Wrapper from "../Wrapper";
 const styles = {
     adCard: {
-        margin: "33%",
-        background: "white"
+        width: "33%",
+        background: "white",
+        float: "left"
     },
-    headName:{
+    headName: {
         "text-align": "center"
     },
-    content:{
+    content: {
         padding: 20,
-    }
+    },
 };
-function AdCard(props) {
-    return(
-<div className ="card">
-    <div className ="img-container">
-        <img alt= {props.name} src= {props.image}/>
-    </div>
-    <div className= "content">
-        <ul>
-            <li styles={styles.headName}>
-                <strong>Name:</strong> {props.name}
-            </li>
-            <li styles={styles.content}>
-                <strong>Price:</strong>{props.price}
-            </li>
-        </ul>
-    </div>
-</div>
+export function AdCard(props) {
+    return (
+
+        <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
+            <div className="card">
+                <img src={props.image} className="card-img-top" alt={props.name} />
+                <div className="card-body">
+                    <h5 className="card-title">{props.name}</h5>
+                    <p className="card-text">Price: {props.price}</p>
+                </div>
+            </div>
+        </div>
+
     );
 }
 
-export default AdCard;
+export function AdCard1(props) {
+    return (
+        <Wrapper>
+            <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
+                <div className="card">
+                    <img src={props.image} className="card-img-top" alt={props.name} />
+                    <div className="card-body">
+                        <h5 className="card-title">{props.name}</h5>
+                        <p className="card-text">Price: {props.price}</p>
+                    </div>
+                    {props.children}
+                </div>
+            </div>
+        </Wrapper>
+    );
+}
