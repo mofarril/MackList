@@ -333,7 +333,12 @@ class Sidebar extends Component {
 
                                 {this.state.onepost.map(ele => {
                                     return(
+                                        <div>
                                     <p>Title: {ele.productTitle}</p>
+                                    <p>Description: {ele.productDescription}</p>
+                                    <p>Seller: {ele.sellerContactName}</p>
+                                    <p>Image:</p>
+                                    </div>
                                     )
                                 })}
 
