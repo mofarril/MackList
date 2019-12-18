@@ -313,7 +313,7 @@ class Sidebar extends Component {
                     return <AdCard
                         name={ele.productTitle}
                         price={" $" + ele.productCost}
-                        image={ele.productImage}
+                        image={require("../uploads/" + ele.productImage)}
                         onClick = {e => this.clicked(ele._id)}
                         data-toggle="modal" 
                         data-target="#exampleModalLong"
@@ -334,10 +334,12 @@ class Sidebar extends Component {
                                 {this.state.onepost.map(ele => {
                                     return(
                                         <div>
+                                            <div className = "text-center" >
+                                    <img src = {require("../uploads/" + ele.productImage)} alt ={ele.productTitle} height = "250px" width = "350px"/></div>
                                     <p>Title: {ele.productTitle}</p>
                                     <p>Description: {ele.productDescription}</p>
                                     <p>Seller: {ele.sellerContactName}</p>
-                                    <p>Image:</p>
+                                   
                                     </div>
                                     )
                                 })}

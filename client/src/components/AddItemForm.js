@@ -3,7 +3,7 @@ import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
 import { CitiesAndState } from "../utils/cityState"
 import { Department } from "../utils/department"
-import Axios   from "axios";
+import Axios from "axios";
 
 class Form extends Component {
   // Setting the component's initial state
@@ -65,10 +65,10 @@ class Form extends Component {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append("productImage", this.state.productImage)
+    //formData.append("productImage", this.state.productImage)
     formData.append("owner", this.props.user)
     formData.append("productTitle", this.state.productTitle)
-    //formData.append("productImage", this.state.productImage)
+    formData.append("productImage", this.state.productImage)
     formData.append("productDescription", this.state.productDescription)
     formData.append("productDepartment", this.state.productDepartment)
     formData.append("productCost", this.state.productCost)
