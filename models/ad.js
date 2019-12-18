@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const adSchema = new Schema({
   owner: {type: String, required: true},
   productTitle: { type: String, required: true},
-  productImage: { type: String, required: false},
+  productImage: {data: Buffer, type: String, required: false},
   productDescription: { type: String, required: true},
   productDepartment: { type: String, required: true},
   productCost: {type: Number, required: true},

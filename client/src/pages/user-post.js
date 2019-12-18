@@ -108,11 +108,11 @@ class UserPost extends Component {
                 <div>
                     {this.state.allposts.map(ele => {
                         if (user === ele.owner) {
-                            console.log(ele._id)
+                            console.log("../uploads/" + ele.productImage)
                             return <AdCard1
                                 name={ele.productTitle}
                                 price={" $" + ele.productCost}
-                                image={ele.productImage}
+                                image={require("../uploads/" + ele.productImage)}
                             >
                                 <button>Edit</button>
                                 <button onClick={e => this.clicked(ele._id)} data-toggle="modal"

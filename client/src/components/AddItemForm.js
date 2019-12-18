@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API"
-import { CitiesAndState} from "../utils/cityState"
-import {Department} from "../utils/department"
-
-
+import { CitiesAndState } from "../utils/cityState"
+import { Department } from "../utils/department"
+import Axios from "axios";
 
 class Form extends Component {
   // Setting the component's initial state
@@ -25,21 +24,23 @@ class Form extends Component {
     message: "",
 
     cities: []
-
+    // this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    // this.handleInputChange = this.handleInputChange.bind(this),
+    // this.fileUpload = this.fileUpload.bind(this)
   };
 
   updateCities = () => {
     const arr = CitiesAndState.filter(ele => {
       return ele.state === this.state.locationState
     })
-    var arr1 =[]
+    var arr1 = []
     arr.map(ele => {
       console.log(ele)
-      for(let i=0; i<ele.cities.length;i++){
+      for (let i = 0; i < ele.cities.length; i++) {
         arr1.push(ele.cities[i])
-    }
+      }
     })
-    this.setState({cities: arr1})
+    this.setState({ cities: arr1 })
     console.log(this.state.cities)
   }
 
@@ -47,45 +48,79 @@ class Form extends Component {
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value 
     });
-    
+    // this.setState({ productImage: event.target.pr[0] })
   };
 
+  handleFileChange = event => {
+    // const { name, files } = event.target;
+    this.setState({
+      productImage: event.target.files[0] 
+    });
+    console.log(event.target.files[0]);
+  };
   handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
-    API.postAd({
-      owner: this.props.user,
-      productTitle: this.state.productTitle,
-      productImage: this.state.productImage,
-      productDescription: this.state.productDescription,
-      productDepartment: this.state.productDepartment,
-      productCost: this.state.productCost,
+    const formData = new FormData();
+    //formData.append("productImage", this.state.productImage)
+    formData.append("owner", this.props.user)
+    formData.append("productTitle", this.state.productTitle)
+    formData.append("productImage", this.state.productImage)
+    formData.append("productDescription", this.state.productDescription)
+    formData.append("productDepartment", this.state.productDepartment)
+    formData.append("productCost", this.state.productCost)
 
-      locationCity: this.state.locationCity,
-      locationState: this.state.locationState,
+    formData.append("locationCity", this.state.locationCity)
+    formData.append("locationState", this.state.locationState)
 
-      sellerContactName: this.state.sellerContactName,
-      sellerContactPhone: this.state.sellerContactPhone,
-      sellerContactEmail: this.state.sellerContactEmail,
-    }).then(results => {
-      this.setState({
-        productTitle: "",
-        productImage: "",
-        productDescription: "",
-        productCost: "",
+    formData.append("sellerContactName", this.state.sellerContactName)
+    formData.append("sellerContactPhone", this.state.sellerContactPhone)
+    formData.append("sellerContactEmail", this.state.sellerContactEmail)
+  const config = {
+      header: {
+        "content-type": "multipart/form-data"
+      }
+    };
+    Axios.post("/api/images",formData,config)
+    .then((response) => {
+      console.log(response)
+        alert("The file is successfully uploaded");
+    }).catch((error) => {
+      console.log(error);
+});    
+    // API.postAd({
+    //   owner: this.props.user,
+    //   productTitle: this.state.productTitle,
+    //   productImage: this.state.productImage,
+    //   productDescription: this.state.productDescription,
+    //   productDepartment: this.state.productDepartment,
+    //   productCost: this.state.productCost,
 
-        locationCity: "",
-        locationState: "",
+    //   locationCity: this.state.locationCity,
+    //   locationState: this.state.locationState,
 
-        sellerContactName: "",
-        sellerContactPhone: "",
-        sellerContactEmail: "",
-        message: "Item added Successfully"
-      });
-    }).catch(err => console.log(err));
+    //   sellerContactName: this.state.sellerContactName,
+    //   sellerContactPhone: this.state.sellerContactPhone,
+    //   sellerContactEmail: this.state.sellerContactEmail,
+    // }).then(results => {
+    //   this.setState({
+    //     productTitle: "",
+    //     productImage: "",
+    //     productDescription: "",
+    //     productCost: "",
+
+    //     locationCity: "",
+    //     locationState: "",
+
+    //     sellerContactName: "",
+    //     sellerContactPhone: "",
+    //     sellerContactEmail: "",
+    //     message: "Item added Successfully"
+    //   });
+    // }).catch(err => console.log(err));
 
 
   };
@@ -109,9 +144,8 @@ class Form extends Component {
           />
           <label>Image (required)</label>
           <Input
-            value={this.state.productImage}
             name="productImage"
-            onChange={this.handleInputChange}
+            onChange={this.handleFileChange}
             type="file"
             required
             placeholder="Product Image"
@@ -138,7 +172,7 @@ class Form extends Component {
 
           <datalist id="department">
             {Department.map(ele => {
-            //  console.log(ele)
+              //  console.log(ele)
               return <option>{ele.department}</option>
             })}
           </datalist>
@@ -166,7 +200,7 @@ class Form extends Component {
 
           <datalist id="state">
             {CitiesAndState.map(ele => {
-            //  console.log(ele)
+              //  console.log(ele)
               return <option>{ele.state}</option>
             })}
           </datalist>
@@ -177,17 +211,17 @@ class Form extends Component {
             name="locationCity"
             list="city"
             onChange={this.handleInputChange}
-            onFocus = {this.updateCities}
+            onFocus={this.updateCities}
             type="text"
             placeholder="City"
             required
           />
           <datalist id="city">
-          {this.state.cities.map(ele => {
-              console.log(ele)
-              
+            {this.state.cities.map(ele => {
+              // console.log(ele)
+
               return <option>{ele}</option>
-            
+
             })}
           </datalist>
 
@@ -228,5 +262,17 @@ class Form extends Component {
   }
 }
 export default Form;
+
+
+
+
+
+
+
+
+
+
+
+
 
 

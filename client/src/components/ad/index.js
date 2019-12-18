@@ -1,5 +1,6 @@
 import React from "react";
 import Wrapper from "../Wrapper";
+
 const styles = {
     adCard: {
         width: "33%",
@@ -18,7 +19,7 @@ export function AdCard(props) {
 
         <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
             <div className="card">
-                <img src={props.image} className="card-img-top" alt={props.name} />
+                <img src={props.image} className="card-img-top" alt={props.name} height = "200px" width = "350px"/>
                 <div className="card-body">
                     <h5 className="card-title">{props.name}</h5>
                     <p className="card-text">Price: {props.price}</p>
@@ -34,7 +35,7 @@ export function AdCard1(props) {
         <Wrapper>
             <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
                 <div className="card">
-                    <img src={props.image} className="card-img-top" alt={props.name} />
+                    <img src={props.image} className="card-img-top" alt={props.name} height = "250px" width = "350px"/>
                     <div className="card-body">
                         <h5 className="card-title">{props.name}</h5>
                         <p className="card-text">Price: {props.price}</p>
