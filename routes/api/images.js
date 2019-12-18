@@ -5,7 +5,7 @@ const db = require("../../models")
 const path = require("path")
 const uuid = require("uuid/v4")
 // router.use("/ads", adRoutes)
-const uploadDir = path.join(process.cwd(), "uploads")
+const uploadDir = path.join(process.cwd(), "client/build/uploads")
 
 // Multer this will store the image in memory and upload the image into the uplaod folder 
 const storage = multer.diskStorage({
