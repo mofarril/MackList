@@ -5,7 +5,7 @@ const db = require("../../models")
 const path = require("path")
 const uuid = require("uuid/v4")
 // router.use("/ads", adRoutes)
-const uploadDir = path.join(process.cwd(), "js/uploads")
+const uploadDir = path.join(process.cwd(), "uploads")
 
 // Multer this will store the image in memory and upload the image into the uplaod folder 
 const storage = multer.diskStorage({
@@ -37,6 +37,7 @@ const upload = multer({
 // adRouter.route("../client/src/pages/user-post")
 router.post("/", upload.single("productImage"), (req, res, next)=>{
     console.log(req.file);
+    console.log("Hi " +uploadDir)
     db.Ad.create({
         owner: req.body.owner ,
         productTitle:req.body.productTitle,

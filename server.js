@@ -26,7 +26,6 @@ if (process.env.NODE_ENV === "production") {
  // app.use(express.static("public/index.html"))
 }
 
-app.use('/client/src/uploads', express.static('uploads'));
 app.use(cors());
 
 //app.use(routes);
