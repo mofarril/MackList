@@ -3,6 +3,7 @@ import Wrapper from "../components/Wrapper";
 import Form from "../components/AddItemForm";
 import API from "../utils/API"
 import { AdCard1 } from "../components/ad/index";
+import { Input, TextArea, FormBtn } from "../components/input";
 
 class UserPost extends Component {
 
@@ -13,11 +14,16 @@ class UserPost extends Component {
             imageURL: '',
             allposts: [],
             message: "",
-            onepost: []
+            onepost: [],
+            productTitle: "",
+            productDescription: "",
+            productCost: "",
+            sellerContactName: "",
+            sellerContactPhone: "",
+            sellerContactEmail: "",
 
         };
-
-        this.handleUploadImage = this.handleUploadImage.bind(this);
+        //  this.handleUploadImage = this.handleUploadImage.bind(this);
     }
 
     componentDidMount = () => {
@@ -25,32 +31,54 @@ class UserPost extends Component {
             .then(results => {
                 this.setState({ allposts: results.data })
                 // console.log(results)
-                console.log(this.state.allposts)
+                // console.log(this.state.allposts)
             })
             .catch(err => console.log(err))
     }
 
-    handleUploadImage(ev) {
-        ev.preventDefault();
-
-        const data = new FormData();
-        data.append('file', this.uploadInput.files[0]);
-        data.append('filename', this.fileName.value);
-
-        fetch('http://localhost:3000/', {
-            method: 'POST',
-            body: data,
-        }).then((response) => {
-            response.json().then((body) => {
-                this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        const { name, value, placeholder } = event.target;
+        if (value === "") {
+            this.setState({
+                [name]: placeholder
+            })
+        } else {
+            this.setState({
+                [name]: value
             });
-        });
-    }
+        }
+    };
 
+    handleFormSubmit = (id) => {
+        API.updateAd({
+            id,
+            productTitle: this.state.productTitle,
+            productDescription: this.state.productDescription,
+            productCost: this.state.productCost
+        }).then(results => {
+            this.setState({ message: "Posting updated" })
+        })
+            .catch(err => console.log(err))
 
-    ImageSelectHandler = event => {
-        console.log(event)
     }
+    // handleUploadImage(ev) {
+    //     ev.preventDefault();
+    //     const data = new FormData();
+    //     data.append('file', this.uploadInput.files[0]);
+    //     data.append('filename', this.fileName.value);
+    //     fetch('http://localhost:3000/', {
+    //         method: 'POST',
+    //         body: data,
+    //     }).then((response) => {
+    //         response.json().then((body) => {
+    //             this.setState({ imageURL: `http://localhost:8000/${body.file}` });
+    //         });
+    //     });
+    // }
+    // ImageSelectHandler = event => {
+    //     console.log(event)
+    // }
 
     clicked = (id) => {
         API.getAdById({ id })
@@ -87,14 +115,12 @@ class UserPost extends Component {
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLongTitle">Product Form</h5>
+                                            <h5 className="modal-title" id="exampleModalLongTitle">Ad Form</h5>
                                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div className="modal-body">
-                                            <input type="file" className="custom-file-input" id="customFile" />
-                                            <label className="custom-file-label" for="#customFile">Choose file</label>
                                             <Form user={user} />
                                         </div>
                                     </div>
@@ -114,12 +140,42 @@ class UserPost extends Component {
                                 price={" $" + ele.productCost}
                                 image={require("../uploads/" + ele.productImage)}
                             >
-                                <button>Edit</button>
                                 <button onClick={e => this.clicked(ele._id)} data-toggle="modal"
+                                    data-target="#editModal" className="btn btn-danger">Edit</button>
+                                <br /><button onClick={e => this.clicked(ele._id)} data-toggle="modal"
                                     data-target="#deleteModal" className="btn btn-danger">Delete</button>
                             </AdCard1>
                         }
                     })}
+                </div>
+                <div className="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                Edit Post
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+
+                                {this.state.onepost.map(ele => {
+                                    return (
+                                        <div>
+                                            <div className="text-center" >
+                                                <img src={require("../uploads/" + ele.productImage)} alt={ele.productTitle} height="250px" width="350px" /></div>
+                                            <form onSubmit={e => this.handleFormSubmit(ele._id)}>
+                                                <p><b>Title:</b><Input type="text" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
+                                                <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
+                                                <p><b>Cost:</b><Input type="text" pattern="[0-9]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
+                                                <button type="submit" className="btn btn-success">Submit</button>
+                                            </form>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -144,9 +200,7 @@ class UserPost extends Component {
                                         </div>
                                     )
                                 })}
-
                             </div>
-                            {/* // <Form user={user} /> */}
                         </div>
                     </div>
                 </div>

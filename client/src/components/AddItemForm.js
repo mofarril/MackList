@@ -41,7 +41,6 @@ class Form extends Component {
       }
     })
     this.setState({ cities: arr1 })
-    console.log(this.state.cities)
   }
 
   handleInputChange = event => {
@@ -135,7 +134,7 @@ class Form extends Component {
 
           <label>Title (required)</label>
           <Input
-            value={this.state.productTitle}
+            value={this.state.productTitle || this.props.title}
             name="productTitle"
             onChange={this.handleInputChange}
             type="text"
@@ -152,7 +151,7 @@ class Form extends Component {
           />
           <label>Description (required)</label>
           <TextArea
-            value={this.state.productDescription}
+            value={this.state.productDescription || this.props.description}
             name="productDescription"
             onChange={this.handleInputChange}
             type="text"
@@ -161,7 +160,7 @@ class Form extends Component {
           />
           <label>Department (required)</label>
           <Input
-            value={this.state.productDepartment}
+            value={this.state.productDepartment || this.props.department}
             name="productDepartment"
             list="department"
             onChange={this.handleInputChange}
@@ -178,7 +177,7 @@ class Form extends Component {
           </datalist>
           <label>Price (required)</label>
           <Input
-            value={this.state.productCost}
+            value={this.state.productCost || this.props.cost}
             name="productCost"
             onChange={this.handleInputChange}
             type="text"
@@ -189,7 +188,7 @@ class Form extends Component {
           />
           <label>State (required)</label>
           <Input
-            value={this.state.locationState}
+            value={this.state.locationState || this.props.state}
             name="locationState"
             list="state"
             onChange={this.handleInputChange}
@@ -207,7 +206,7 @@ class Form extends Component {
 
           <label>City (required)</label>
           <Input
-            value={this.state.locationCity}
+            value={this.state.locationCity || this.props.city}
             name="locationCity"
             list="city"
             onChange={this.handleInputChange}
@@ -227,7 +226,7 @@ class Form extends Component {
 
           <label>Contact Name (required)</label>
           <Input
-            value={this.state.sellerContactName}
+            value={this.state.sellerContactName || this.props.name}
             name="sellerContactName"
             onChange={this.handleInputChange}
             type="text"
@@ -236,7 +235,7 @@ class Form extends Component {
           />
           <label>Contact Email (required)</label>
           <Input
-            value={this.state.sellerContactEmail}
+            value={this.state.sellerContactEmail || this.props.email}
             name="sellerContactEmail"
             required
             onChange={this.handleInputChange}
@@ -245,7 +244,7 @@ class Form extends Component {
           />
           <label>Contact Phone</label>
           <Input
-            value={this.state.sellerContactPhone}
+            value={this.state.sellerContactPhone || this.props.phone}
             name="sellerContactPhone"
             onChange={this.handleInputChange}
             type="text"
