@@ -313,7 +313,7 @@ class Sidebar extends Component {
                     return <AdCard
                         name={ele.productTitle}
                         price={" $" + ele.productCost}
-                        image={require("../uploads/" + ele.productImage)}
+                        image={ele.productImage}
                         onClick = {e => this.clicked(ele._id)}
                         data-toggle="modal" 
                         data-target="#exampleModalLong"
@@ -336,7 +336,7 @@ class Sidebar extends Component {
                                     return(
                                         <div>
                                             <div className = "text-center" >
-                                    <img src = {require("../uploads/" + ele.productImage)} alt ={ele.productTitle} height = "250px" width = "350px"/></div>
+                                    <img src = {ele.productImage} alt ={ele.productTitle} height = "250px" width = "350px"/></div>
                                     <p><b>Title:</b> {ele.productTitle}</p>
                                     <p><b>Description:</b> {ele.productDescription}</p>
                                     <p><b>City:</b> {ele.locationCity}</p>
