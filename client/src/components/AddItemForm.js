@@ -41,7 +41,6 @@ class Form extends Component {
       }
     })
     this.setState({ cities: arr1 })
-    console.log(this.state.cities)
   }
 
   handleInputChange = event => {
@@ -64,63 +63,63 @@ class Form extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
-    const formData = new FormData();
-    //formData.append("productImage", this.state.productImage)
-    formData.append("owner", this.props.user)
-    formData.append("productTitle", this.state.productTitle)
-    formData.append("productImage", this.state.productImage)
-    formData.append("productDescription", this.state.productDescription)
-    formData.append("productDepartment", this.state.productDepartment)
-    formData.append("productCost", this.state.productCost)
+//     const formData = new FormData();
+//     //formData.append("productImage", this.state.productImage)
+//     formData.append("owner", this.props.user)
+//     formData.append("productTitle", this.state.productTitle)
+//     formData.append("productImage", this.state.productImage)
+//     formData.append("productDescription", this.state.productDescription)
+//     formData.append("productDepartment", this.state.productDepartment)
+//     formData.append("productCost", this.state.productCost)
 
-    formData.append("locationCity", this.state.locationCity)
-    formData.append("locationState", this.state.locationState)
+//     formData.append("locationCity", this.state.locationCity)
+//     formData.append("locationState", this.state.locationState)
 
-    formData.append("sellerContactName", this.state.sellerContactName)
-    formData.append("sellerContactPhone", this.state.sellerContactPhone)
-    formData.append("sellerContactEmail", this.state.sellerContactEmail)
-  const config = {
-      header: {
-        "content-type": "multipart/form-data"
-      }
-    };
-    Axios.post("/api/images",formData,config)
-    .then((response) => {
-      console.log(response)
-        alert("The file is successfully uploaded");
-    }).catch((error) => {
-      console.log(error);
-});    
-    // API.postAd({
-    //   owner: this.props.user,
-    //   productTitle: this.state.productTitle,
-    //   productImage: this.state.productImage,
-    //   productDescription: this.state.productDescription,
-    //   productDepartment: this.state.productDepartment,
-    //   productCost: this.state.productCost,
+//     formData.append("sellerContactName", this.state.sellerContactName)
+//     formData.append("sellerContactPhone", this.state.sellerContactPhone)
+//     formData.append("sellerContactEmail", this.state.sellerContactEmail)
+//   const config = {
+//       header: {
+//         "content-type": "multipart/form-data"
+//       }
+//     };
+//     Axios.post("/api/images",formData,config)
+//     .then((response) => {
+//       console.log(response)
+//         alert("The file is successfully uploaded");
+//     }).catch((error) => {
+//       console.log(error);
+// });    
+    API.postAd({
+      owner: this.props.user,
+      productTitle: this.state.productTitle,
+      productImage: this.state.productImage,
+      productDescription: this.state.productDescription,
+      productDepartment: this.state.productDepartment,
+      productCost: this.state.productCost,
 
-    //   locationCity: this.state.locationCity,
-    //   locationState: this.state.locationState,
+      locationCity: this.state.locationCity,
+      locationState: this.state.locationState,
 
-    //   sellerContactName: this.state.sellerContactName,
-    //   sellerContactPhone: this.state.sellerContactPhone,
-    //   sellerContactEmail: this.state.sellerContactEmail,
-    // }).then(results => {
-    //   this.setState({
-    //     productTitle: "",
-    //     productImage: "",
-    //     productDescription: "",
-    //     productCost: "",
+      sellerContactName: this.state.sellerContactName,
+      sellerContactPhone: this.state.sellerContactPhone,
+      sellerContactEmail: this.state.sellerContactEmail,
+    }).then(results => {
+      this.setState({
+        productTitle: "",
+        productImage: "",
+        productDescription: "",
+        productCost: "",
 
-    //     locationCity: "",
-    //     locationState: "",
+        locationCity: "",
+        locationState: "",
 
-    //     sellerContactName: "",
-    //     sellerContactPhone: "",
-    //     sellerContactEmail: "",
-    //     message: "Item added Successfully"
-    //   });
-    // }).catch(err => console.log(err));
+        sellerContactName: "",
+        sellerContactPhone: "",
+        sellerContactEmail: "",
+        message: "Item added Successfully"
+      });
+    }).catch(err => console.log(err));
 
 
   };
@@ -135,7 +134,7 @@ class Form extends Component {
 
           <label>Title (required)</label>
           <Input
-            value={this.state.productTitle}
+            value={this.state.productTitle || this.props.title}
             name="productTitle"
             onChange={this.handleInputChange}
             type="text"
@@ -145,14 +144,14 @@ class Form extends Component {
           <label>Image (required)</label>
           <Input
             name="productImage"
-            onChange={this.handleFileChange}
-            type="file"
+            onChange={this.handleInputChange}
+            type="text"
             required
             placeholder="Product Image"
           />
           <label>Description (required)</label>
           <TextArea
-            value={this.state.productDescription}
+            value={this.state.productDescription || this.props.description}
             name="productDescription"
             onChange={this.handleInputChange}
             type="text"
@@ -161,7 +160,7 @@ class Form extends Component {
           />
           <label>Department (required)</label>
           <Input
-            value={this.state.productDepartment}
+            value={this.state.productDepartment || this.props.department}
             name="productDepartment"
             list="department"
             onChange={this.handleInputChange}
@@ -178,7 +177,7 @@ class Form extends Component {
           </datalist>
           <label>Price (required)</label>
           <Input
-            value={this.state.productCost}
+            value={this.state.productCost || this.props.cost}
             name="productCost"
             onChange={this.handleInputChange}
             type="text"
@@ -189,7 +188,7 @@ class Form extends Component {
           />
           <label>State (required)</label>
           <Input
-            value={this.state.locationState}
+            value={this.state.locationState || this.props.state}
             name="locationState"
             list="state"
             onChange={this.handleInputChange}
@@ -207,7 +206,7 @@ class Form extends Component {
 
           <label>City (required)</label>
           <Input
-            value={this.state.locationCity}
+            value={this.state.locationCity || this.props.city}
             name="locationCity"
             list="city"
             onChange={this.handleInputChange}
@@ -227,7 +226,7 @@ class Form extends Component {
 
           <label>Contact Name (required)</label>
           <Input
-            value={this.state.sellerContactName}
+            value={this.state.sellerContactName || this.props.name}
             name="sellerContactName"
             onChange={this.handleInputChange}
             type="text"
@@ -236,7 +235,7 @@ class Form extends Component {
           />
           <label>Contact Email (required)</label>
           <Input
-            value={this.state.sellerContactEmail}
+            value={this.state.sellerContactEmail || this.props.email}
             name="sellerContactEmail"
             required
             onChange={this.handleInputChange}
@@ -245,7 +244,7 @@ class Form extends Component {
           />
           <label>Contact Phone</label>
           <Input
-            value={this.state.sellerContactPhone}
+            value={this.state.sellerContactPhone || this.props.phone}
             name="sellerContactPhone"
             onChange={this.handleInputChange}
             type="text"

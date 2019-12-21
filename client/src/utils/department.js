@@ -35,5 +35,8 @@ export const Department = [
     {
         department: "Toys, Kids and Baby",
     },
+    {
+        department: "Other",
+    },
 
 ]

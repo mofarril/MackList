@@ -226,7 +226,7 @@ class Sidebar extends Component {
 
                     <div className="card-body row ml-3">
                         <div className="form-group col-lg-3">
-                            <label for="FormControlSelect">Department</label>
+                            <label htmlFor="FormControlSelect">Department</label>
                             <input
                                 type="text"
                                 value={this.state.department}
@@ -240,12 +240,12 @@ class Sidebar extends Component {
                             <datalist id="department">
                                 {Department.map(ele => {
                                     //  console.log(ele)
-                                    return <option>{ele.department}</option>
+                                    return <option key={ele.department}>{ele.department}</option>
                                 })}
                             </datalist>
                         </div>
                         <div className="form-group col-lg-3">
-                            <label for="FormControlSelect">State(required)</label>
+                            <label htmlFor="FormControlSelect">State(required)</label>
                             <input
                                 type="text"
                                 value={this.state.locationState}
@@ -259,12 +259,12 @@ class Sidebar extends Component {
                             <datalist id="state">
                                 {CitiesAndState.map(ele => {
                                     //  console.log(ele)
-                                    return <option>{ele.state}</option>
+                                    return <option key={ele.state}>{ele.state}</option>
                                 })}
                             </datalist>
                         </div>
                         <div className="form-group col-lg-3">
-                            <label for="FormControlSelect">City</label>
+                            <label htmlFor="FormControlSelect">City</label>
                             <input
                                 type="text"
                                 value={this.state.locationCity}
@@ -279,7 +279,7 @@ class Sidebar extends Component {
                             <datalist id="city">
                                 {this.state.cities.map(ele => {
                                   //  console.log(ele)
-                                    return <option>{ele}</option>
+                                    return <option key={ele}>{ele}</option>
                                 })}
                             </datalist>
                         </div>
@@ -290,13 +290,13 @@ class Sidebar extends Component {
                             <div className="row">
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
-                                    <label className="form-check-label" for="exampleRadios1">
+                                    <label className="form-check-label" htmlFor="exampleRadios1">
                                         <a className="text-primary">lowTohigh</a>
                                     </label>
                                 </div>
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
-                                    <label className="form-check-label" for="exampleRadios2">
+                                    <label className="form-check-label" htmlFor="exampleRadios2">
                                         <a className="text-primary">highTolow</a>
                                     </label>
                                 </div>
@@ -313,18 +313,19 @@ class Sidebar extends Component {
                     return <AdCard
                         name={ele.productTitle}
                         price={" $" + ele.productCost}
-                        image={require("../uploads/" + ele.productImage)}
+                        image={ele.productImage}
                         onClick = {e => this.clicked(ele._id)}
                         data-toggle="modal" 
                         data-target="#exampleModalLong"
+                        key = {ele.productTitle}
                     />
                 })}
 
-                <div className="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-
+                            <h4>Product detail</h4>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -335,17 +336,21 @@ class Sidebar extends Component {
                                     return(
                                         <div>
                                             <div className = "text-center" >
-                                    <img src = {require("../uploads/" + ele.productImage)} alt ={ele.productTitle} height = "250px" width = "350px"/></div>
-                                    <p>Title: {ele.productTitle}</p>
-                                    <p>Description: {ele.productDescription}</p>
-                                    <p>Seller: {ele.sellerContactName}</p>
+                                    <img src = {ele.productImage} alt ={ele.productTitle} height = "250px" width = "350px"/></div>
+                                    <p><b>Title:</b> {ele.productTitle}</p>
+                                    <p><b>Description:</b> {ele.productDescription}</p>
+                                    <p><b>City:</b> {ele.locationCity}</p>
+                                    <p><b>State:</b> {ele.locationState}</p>
+                                    <p><b>Contact Person:</b> {ele.sellerContactName}</p>
+                                    <p><b>Phone:</b> {ele.sellerContactPhone}</p>
+                                    <p><b>Email:</b> {ele.sellerContactEmail}</p>
                                    
                                     </div>
                                     )
                                 })}
 
-                                <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
-                                    Contact Seller</button></div>
+                                <button type="button" className="btn btn-success" data-dismiss="modal" data-target="#exampleModalLong">
+                                    Close</button></div>
                             {/* // <Form user={user} /> */}
                         </div>
                     </div>
