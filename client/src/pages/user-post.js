@@ -18,6 +18,7 @@ class UserPost extends Component {
             productTitle: "",
             productDescription: "",
             productCost: "",
+            productImage: "",
             sellerContactName: "",
             sellerContactPhone: "",
             sellerContactEmail: "",
@@ -167,6 +168,7 @@ class UserPost extends Component {
                                                 <img src={ele.productImage} alt={ele.productTitle} height="250px" width="350px" /></div>
                                             <form onSubmit={e => this.handleFormSubmit(ele._id)}>
                                                 <p><b>Title:</b><Input type="text" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
+                                                <p><b>Image:</b><Input type="text" name="productImage" value={this.state.productImage} placeholder={ele.productImage} onChange={this.handleInputChange} /></p>
                                                 <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
                                                 <p><b>Cost:</b><Input type="text" pattern="[0-9]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
                                                 <button type="submit" className="btn btn-success">Submit</button>
