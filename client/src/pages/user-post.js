@@ -4,7 +4,11 @@ import Form from "../components/AddItemForm";
 import API from "../utils/API"
 import { AdCard1 } from "../components/ad/index";
 import { Input, TextArea, FormBtn } from "../components/input";
-
+const styles ={
+    text: {
+        "color": "red"
+    }
+}
 class UserPost extends Component {
 
     constructor(props) {
@@ -40,7 +44,7 @@ class UserPost extends Component {
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         const { name, value, placeholder } = event.target;
-        if (value === "") {
+        if (value === "NA") {
             this.setState({
                 [name]: placeholder
             })
@@ -55,6 +59,7 @@ class UserPost extends Component {
         API.updateAd({
             id,
             productTitle: this.state.productTitle,
+            productImage: this.state.productImage,
             productDescription: this.state.productDescription,
             productCost: this.state.productCost
         }).then(results => {
@@ -163,52 +168,53 @@ class UserPost extends Component {
 
                                 {this.state.onepost.map(ele => {
                                     return (
-                                        <div>
-                                            <div className="text-center" >
-                                                <img src={ele.productImage} alt={ele.productTitle} height="250px" width="350px" /></div>
-                                            <form onSubmit={e => this.handleFormSubmit(ele._id)}>
-                                                <p><b>Title:</b><Input type="text" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
-                                                <p><b>Image:</b><Input type="text" name="productImage" value={this.state.productImage} placeholder={ele.productImage} onChange={this.handleInputChange} /></p>
-                                                <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
-                                                <p><b>Cost:</b><Input type="text" pattern="[0-9]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
-                                                <button type="submit" className="btn btn-success">Submit</button>
-                                            </form>
+                                        < div >
+                                        <div className="text-center" >
+                                            <img src={ele.productImage} alt={ele.productTitle} height="250px" width="350px" /></div>
+                                        <form onSubmit={e => this.handleFormSubmit(ele._id)}>
+                                            <p><b style = {styles.text}>Note: Type NA in the field you dont want to update.</b></p>
+                                            <p><b>Title:</b><Input type="text" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
+                                            <p><b>Image:</b><Input type="text" name="productImage" value={this.state.productImage} placeholder={ele.productImage} onChange={this.handleInputChange} /></p>
+                                            <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
+                                            <p><b>Cost:</b><Input type="text" pattern="[0-9]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
+                                            <button type="submit" className="btn btn-success">Submit</button>
+                                        </form>
                                         </div>
-                                    )
-                                })}
+                            )
+                        })}
                             </div>
-                        </div>
                     </div>
                 </div>
+                </div>
 
-                <div className="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                Delete Post
+            <div className="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            Delete Post
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
 
-                                {this.state.onepost.map(ele => {
-                                    return (
-                                        <div>
-                                            <p>Are you sure you want to delete {ele.productTitle}?</p>
-                                            <button type="button" onClick={e => this.deleteAd(ele._id)} className="btn btn-success" data-toggle="modal" data-target="#deleteModal">
-                                                Yes</button>
-                                            <button type="button" className="btn btn-danger ml-2" data-dismiss="modal" aria-label="Close">
-                                                No</button>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                            {this.state.onepost.map(ele => {
+                                return (
+                                    <div>
+                                        <p>Are you sure you want to delete {ele.productTitle}?</p>
+                                        <button type="button" onClick={e => this.deleteAd(ele._id)} className="btn btn-success" data-toggle="modal" data-target="#deleteModal">
+                                            Yes</button>
+                                        <button type="button" className="btn btn-danger ml-2" data-dismiss="modal" aria-label="Close">
+                                            No</button>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
+            </div>
 
-            </Wrapper>
+            </Wrapper >
         )
     }
 }
