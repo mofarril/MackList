@@ -138,7 +138,8 @@ class UserPost extends Component {
                             return <AdCard1
                                 name={ele.productTitle}
                                 price={" $" + ele.productCost}
-                                image={require("../uploads/" + ele.productImage)}
+                                // image={require("../uploads/" + ele.productImage)}
+                                image={ele.productImage}
                             >
                                 <button onClick={e => this.clicked(ele._id)} data-toggle="modal"
                                     data-target="#editModal" className="btn btn-danger">Edit</button>
@@ -163,7 +164,7 @@ class UserPost extends Component {
                                     return (
                                         <div>
                                             <div className="text-center" >
-                                                <img src={require("../uploads/" + ele.productImage)} alt={ele.productTitle} height="250px" width="350px" /></div>
+                                                <img src={ele.productImage} alt={ele.productTitle} height="250px" width="350px" /></div>
                                             <form onSubmit={e => this.handleFormSubmit(ele._id)}>
                                                 <p><b>Title:</b><Input type="text" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
                                                 <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
