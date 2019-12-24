@@ -4,11 +4,8 @@ import Form from "../components/AddItemForm";
 import API from "../utils/API"
 import { AdCard1 } from "../components/ad/index";
 import { Input, TextArea, FormBtn } from "../components/input";
-const styles ={
-    text: {
-        "color": "red"
-    }
-}
+
+
 class UserPost extends Component {
 
     constructor(props) {
@@ -44,15 +41,11 @@ class UserPost extends Component {
     handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
         const { name, value, placeholder } = event.target;
-        if (value === "NA") {
-            this.setState({
-                [name]: placeholder
-            })
-        } else {
+        
             this.setState({
                 [name]: value
             });
-        }
+      
     };
 
     handleFormSubmit = (id) => {
@@ -85,6 +78,21 @@ class UserPost extends Component {
     // ImageSelectHandler = event => {
     //     console.log(event)
     // }
+
+    edit = (id, title, image, desc, cost) =>{
+        this.setState({
+            productTitle: title,
+            productImage: image,
+            productDescription: desc,
+            productCost: cost
+        })
+        API.getAdById({ id })
+        .then(results => {
+            console.log(results)
+            this.setState({ onepost: results.data })
+        })
+        .catch(err => console.log(err))
+    }
 
     clicked = (id) => {
         API.getAdById({ id })
@@ -147,7 +155,7 @@ class UserPost extends Component {
                                 // image={require("../uploads/" + ele.productImage)}
                                 image={ele.productImage}
                             >
-                                <button onClick={e => this.clicked(ele._id)} data-toggle="modal"
+                                <button onClick={e => this.edit(ele._id, ele.productTitle, ele.productImage, ele.productDescription, ele.productCost)} data-toggle="modal"
                                     data-target="#editModal" className="btn btn-danger">Edit</button>
                                 <br /><button onClick={e => this.clicked(ele._id)} data-toggle="modal"
                                     data-target="#deleteModal" className="btn btn-danger">Delete</button>
@@ -172,11 +180,10 @@ class UserPost extends Component {
                                         <div className="text-center" >
                                             <img src={ele.productImage} alt={ele.productTitle} height="250px" width="350px" /></div>
                                         <form onSubmit={e => this.handleFormSubmit(ele._id)}>
-                                            <p><b style = {styles.text}>Note: Type NA in the field you dont want to update.</b></p>
-                                            <p><b>Title:</b><Input type="text" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
+                                            <p><b>Title:</b><Input type="text" maxlength = "30" name="productTitle" value={this.state.productTitle} placeholder={ele.productTitle} onChange={this.handleInputChange} /></p>
                                             <p><b>Image:</b><Input type="text" name="productImage" value={this.state.productImage} placeholder={ele.productImage} onChange={this.handleInputChange} /></p>
                                             <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
-                                            <p><b>Cost:</b><Input type="text" pattern="[0-9]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
+                                            <p><b>Cost:</b><Input type="text" pattern="[0-9.]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
                                             <button type="submit" className="btn btn-success">Submit</button>
                                         </form>
                                         </div>

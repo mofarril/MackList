@@ -139,6 +139,7 @@ class Form extends Component {
             onChange={this.handleInputChange}
             type="text"
             required
+            maxlength = "30"
             placeholder="Product Title"
           />
           <label>Image (required)</label>
@@ -181,7 +182,7 @@ class Form extends Component {
             name="productCost"
             onChange={this.handleInputChange}
             type="text"
-            pattern="[0-9]{1,}"
+            pattern="[0-9.]{1,}"
             placeholder="Price"
             required
             title="Please enter numeric value"
