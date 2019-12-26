@@ -17,7 +17,8 @@ const styles = {
     },
     width: {
         "width": "100%"
-    }
+    },
+    
 }
 class Sidebar extends Component {
     state = {
@@ -291,13 +292,13 @@ class Sidebar extends Component {
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
                                     <label className="form-check-label" htmlFor="exampleRadios1">
-                                        <a className="text-primary">lowTohigh</a>
+                                        <a className="text-dark">Low - High</a>
                                     </label>
                                 </div>
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
                                     <label className="form-check-label" htmlFor="exampleRadios2">
-                                        <a className="text-primary">highTolow</a>
+                                        <a className="text-dark">High - Low</a>
                                     </label>
                                 </div>
                             </div>
