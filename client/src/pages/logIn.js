@@ -24,23 +24,7 @@ class Login extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        // if (this.state.username && this.state.password) {
-        //     console.log(this.state.username)
-        //     API.loginUser([{
-        //         username: this.state.username,
-        //         password: this.state.password
-        //     }])
-        //     .then(results => {
-        //         console.log(results)
-        //         if(results.data === "success"){
-        //             window.location.href="/"
-        //                 }else{
-        //                     this.setState({error: "Username or Password is incorrect"})
-        //                 }
-        //     })
-        //     .catch(err => console.log(err));
-        // }
-
+        
         axios
             .post('/api/users/login', {
                 username: this.state.username,

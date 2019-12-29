@@ -6,6 +6,7 @@ import { Department } from "../utils/department"
 import Axios from "axios";
 
 class Form extends Component {
+  
   // Setting the component's initial state
   state = {
     owner: "",
@@ -24,9 +25,7 @@ class Form extends Component {
     message: "",
 
     cities: []
-    // this.handleFormSubmit = this.handleFormSubmit.bind(this)
-    // this.handleInputChange = this.handleInputChange.bind(this),
-    // this.fileUpload = this.fileUpload.bind(this)
+    
   };
 
   updateCities = () => {
@@ -44,12 +43,13 @@ class Form extends Component {
   }
 
   handleInputChange = event => {
+
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
     this.setState({
       [name]: value 
     });
-    // this.setState({ productImage: event.target.pr[0] })
+    
   };
 
   handleFileChange = event => {
@@ -60,36 +60,12 @@ class Form extends Component {
     console.log(event.target.files[0]);
   };
   handleFormSubmit = event => {
+
     // Preventing the default behavior of the form submit (which is to refresh the page)
+    
     event.preventDefault();
 
-//     const formData = new FormData();
-//     //formData.append("productImage", this.state.productImage)
-//     formData.append("owner", this.props.user)
-//     formData.append("productTitle", this.state.productTitle)
-//     formData.append("productImage", this.state.productImage)
-//     formData.append("productDescription", this.state.productDescription)
-//     formData.append("productDepartment", this.state.productDepartment)
-//     formData.append("productCost", this.state.productCost)
-
-//     formData.append("locationCity", this.state.locationCity)
-//     formData.append("locationState", this.state.locationState)
-
-//     formData.append("sellerContactName", this.state.sellerContactName)
-//     formData.append("sellerContactPhone", this.state.sellerContactPhone)
-//     formData.append("sellerContactEmail", this.state.sellerContactEmail)
-//   const config = {
-//       header: {
-//         "content-type": "multipart/form-data"
-//       }
-//     };
-//     Axios.post("/api/images",formData,config)
-//     .then((response) => {
-//       console.log(response)
-//         alert("The file is successfully uploaded");
-//     }).catch((error) => {
-//       console.log(error);
-// });    
+   
     API.postAd({
       owner: this.props.user,
       productTitle: this.state.productTitle,

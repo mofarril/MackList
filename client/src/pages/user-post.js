@@ -25,15 +25,14 @@ class UserPost extends Component {
             sellerContactEmail: "",
 
         };
-        //  this.handleUploadImage = this.handleUploadImage.bind(this);
+        
     }
 
     componentDidMount = () => {
         API.getAd({})
             .then(results => {
                 this.setState({ allposts: results.data })
-                // console.log(results)
-                // console.log(this.state.allposts)
+              
             })
             .catch(err => console.log(err))
     }
@@ -61,24 +60,7 @@ class UserPost extends Component {
             .catch(err => console.log(err))
 
     }
-    // handleUploadImage(ev) {
-    //     ev.preventDefault();
-    //     const data = new FormData();
-    //     data.append('file', this.uploadInput.files[0]);
-    //     data.append('filename', this.fileName.value);
-    //     fetch('http://localhost:3000/', {
-    //         method: 'POST',
-    //         body: data,
-    //     }).then((response) => {
-    //         response.json().then((body) => {
-    //             this.setState({ imageURL: `http://localhost:8000/${body.file}` });
-    //         });
-    //     });
-    // }
-    // ImageSelectHandler = event => {
-    //     console.log(event)
-    // }
-
+   
     edit = (id, title, image, desc, cost) =>{
         this.setState({
             productTitle: title,
@@ -152,7 +134,7 @@ class UserPost extends Component {
                             return <AdCard1
                                 name={ele.productTitle}
                                 price={" $" + ele.productCost}
-                                // image={require("../uploads/" + ele.productImage)}
+                    
                                 image={ele.productImage}
                             >
                                 <button onClick={e => this.edit(ele._id, ele.productTitle, ele.productImage, ele.productDescription, ele.productCost)} data-toggle="modal"

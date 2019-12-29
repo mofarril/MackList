@@ -8,9 +8,7 @@ const styles = {
         float: "left",
         border: "3px solid black"        
     },
-    // font: {
-    //     family: "sans-serif"
-    // },
+ 
     headName: {
         "text-align": "center"
     },
