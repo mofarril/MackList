@@ -235,7 +235,6 @@ class Sidebar extends Component {
                                 onChange={this.handleInputChange}
                                 onSelect={this.filteredSearch}
                                 placeholder=" Select Department"
-                                required
                                 list="department" className="form-control">
                             </input>
                             <datalist id="department">

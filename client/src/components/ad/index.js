@@ -6,15 +6,8 @@ const styles = {
         width: "33%",
         background: "white",
         float: "left",
-        border: "3px solid black"        
-    },
- 
-    headName: {
-        "text-align": "center"
-    },
-    content: {
-        padding: 20,
-    },
+       //border: "3px solid black"        
+    }
 };
 export function AdCard(props) {
     return (
