@@ -3,8 +3,9 @@ import axios from 'axios'
 import Wrapper from "../components/Wrapper"
 import { Input, TextArea, FormBtn } from "../components/input";
 import API from "../utils/API";
-const bcrypt = require('bcryptjs');
+import okapi from "./styles/okapi.png"
 
+const bcrypt = require('bcryptjs');
 
 class Navbar extends Component {
 
@@ -19,6 +20,13 @@ class Navbar extends Component {
     error:""
   }
 
+  mystyle = {
+    
+    color: "rgb(235, 237, 217)"
+          
+    };
+
+ 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -86,14 +94,25 @@ class Navbar extends Component {
     const user = this.props.user;
     return (
       <Wrapper>
-        <div>
-          <nav className="navbar navbar-light bg-light">
-            <h1><a className="navbar-brand" href="/">Macklist</a></h1>
+        <div className="bg-pattern">
+          <nav 
+          style = {this.mystyle} 
+          className="navbar navbar-dark">
+          <img 
+          height="100px"
+          width="90px"
+          src={okapi} 
+          alt="okapi"/>
+            <h1> <a 
+            style = {this.mystyle} 
+            className="navbar-brand" 
+            href="/">Macklist
+            </a> </h1>
             {loggedIn ?
-              <div>
-                <div className="pos-f-t">
-                  <nav className="navbar navbar-white bg-white">
-                    <span className="mr-2">Welcome {user}! </span>
+              <div >
+                <div  className="pos-f-t">
+                  <nav className="navbar navbar bg-success">
+                    <span  className="mr-2">Welcome {user}! </span>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span className="navbar-toggler-icon"></span>
                     </button>
@@ -102,7 +121,7 @@ class Navbar extends Component {
                 </div>
               </div>
               :
-              <a href="/login" className="btn btn-outline-success">LogIn / SignUp</a>}
+              <a href="/login" id ="login-btn"className="btn">Log In/Sign Up</a>}
           </nav>
           {loggedIn ?
             <div className="collapse" id="navbarToggleExternalContent">
