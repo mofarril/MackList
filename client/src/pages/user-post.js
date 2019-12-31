@@ -6,17 +6,13 @@ import { AdCard1 } from "../components/ad/index";
 
 class UserPost extends Component {
 
-<<<<<<< HEAD
-=======
     constructor(props) {
         super(props);
-
         this.state = {
             imageURL: '',
             allposts: [],
             message: "",
             onepost: []
-
         };
 
         this.handleUploadImage = this.handleUploadImage.bind(this);
@@ -49,7 +45,6 @@ class UserPost extends Component {
         });
     }
 
-
     ImageSelectHandler = event => {
         console.log(event)
     }
@@ -73,30 +68,12 @@ class UserPost extends Component {
             .catch(err => console.log(err))
     }
 
->>>>>>> 4ba77b43ef93d6caa87b0cd60d0e07181d93865a
     render() {
         const loggedIn = this.props.loggedIn;
         const user = this.props.user;
         return (
             <Wrapper>
                 <div>
-<<<<<<< HEAD
-                    <div className="text-center">
-                    <h1 >Welcome {user}!</h1>
-                    <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
-                        Create Post</button></div>
-                    <div className="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLongTitle">Product Form</h5>
-                                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div className="modal-body">
-                                    <Form user={user}/>
-=======
                     {loggedIn ?
                         <div>
                             <div className="text-center">
@@ -118,7 +95,6 @@ class UserPost extends Component {
                                             <Form user={user} />
                                         </div>
                                     </div>
->>>>>>> 4ba77b43ef93d6caa87b0cd60d0e07181d93865a
                                 </div>
                             </div>
                             <br /><h3 className="text-center">My Posts</h3>
@@ -129,7 +105,7 @@ class UserPost extends Component {
                 <div>
                     {this.state.allposts.map(ele => {
                         if (user === ele.owner) {
-                            console.log(ele._id)
+                            console.log(ele.productImage)
                             return <AdCard1
                                 name={ele.productTitle}
                                 price={" $" + ele.productCost}
@@ -178,3 +154,11 @@ class UserPost extends Component {
 }
 
 export default UserPost;
+
+
+
+
+
+
+
+
