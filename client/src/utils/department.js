@@ -6,7 +6,7 @@ export const Department = [
         department: "Books",
     },
     {
-        department: "Clothings",
+        department: "Clothing",
     },
     {
         department: "Electronics and Computers",
@@ -16,9 +16,6 @@ export const Department = [
     },
     {
         department: "Home and Garden Accessories",
-    },
-    {
-        department: "Medicines",
     },
     {
         department: "Movies and Music",

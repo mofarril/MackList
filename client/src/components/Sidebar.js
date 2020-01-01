@@ -5,15 +5,12 @@ import { CitiesAndState } from "../utils/cityState"
 import { Department } from "../utils/department"
 import API from "../utils/API"
 import { AdCard } from "../components/ad/index";
-import showFullAd from "../components/ad/showFullAd";
 import Wrapper from "../components/Wrapper";
+
 const styles = {
     search: {
         "height": "480px",
         "border": "1px solid black",
-        // "position":"absolute",
-        // "top": "0",
-        // "bottom": "0"
     },
     width: {
         "width": "100%"
@@ -27,7 +24,6 @@ class Sidebar extends Component {
         locationState: "",
         department: "",
         allposts: [],
-        // filterAds: [],
         onepost: [],
         id: [],
         sort: 0
@@ -36,9 +32,7 @@ class Sidebar extends Component {
         API.getAd({})
             .then(results => {
                 this.setState({ allposts: results.data })
-                // console.log(results)
-                //   console.log(this.state.allposts)
-            })
+                })
             .catch(err => console.log(err))
     }
     clicked = (id) => {
@@ -229,7 +223,7 @@ class Sidebar extends Component {
                     <div className="col-sm-12">
                         <nav className="nav flex-column bg-light" >
                             <div className="btn btn-success" role="button" style={styles.width}>
-                                Advanced Search </div> </nav></div>
+                                Search </div> </nav></div>
 
                     <div className="card-body row ml-3">
                         <div className="form-group col-lg-3">
@@ -241,12 +235,11 @@ class Sidebar extends Component {
                                 onChange={this.handleInputChange}
                                 onSelect={this.filteredSearch}
                                 placeholder=" Select Department"
-                                required
                                 list="department" className="form-control">
                             </input>
                             <datalist id="department">
                                 {Department.map(ele => {
-                                    //  console.log(ele)
+                                    
                                     return <option key={ele.department}>{ele.department}</option>
                                 })}
                             </datalist>
@@ -265,7 +258,7 @@ class Sidebar extends Component {
                             </input>
                             <datalist id="state">
                                 {CitiesAndState.map(ele => {
-                                    //  console.log(ele)
+                                
                                     return <option key={ele.state}>{ele.state}</option>
                                 })}
                             </datalist>
@@ -285,7 +278,7 @@ class Sidebar extends Component {
                             </input>
                             <datalist id="city">
                                 {this.state.cities.map(ele => {
-                                    //  console.log(ele)
+                                    
                                     return <option key={ele}>{ele}</option>
                                 })}
                             </datalist>
@@ -298,13 +291,13 @@ class Sidebar extends Component {
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
                                     <label className="form-check-label" htmlFor="exampleRadios1">
-                                        <a className="text-dark font-italic">Low - High</a>
+                                        <a className="text-dark font-italic">Low-High</a>
                                     </label>
                                 </div>
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
                                     <label className="form-check-label" htmlFor="exampleRadios2">
-                                        <a className="text-dark font-italic">High - Low</a>
+                                        <a className="text-dark font-italic">High-Low</a>
                                     </label>
                                 </div>
                             </div>
