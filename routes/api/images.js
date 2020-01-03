@@ -1,12 +1,12 @@
-var express =require("express");
+var express = require("express");
 const multer = require("multer");
 const router = express.Router();
-// const {Ad} = require("../../models")
+const db = require("../../models")
 const path = require("path")
 const uuid = require("uuid/v4")
 // router.use("/ads", adRoutes)
-const uploadDir = path.join(process.cwd(), "uploads")
-const db = require("../../models")
+const uploadDir = path.join(process.cwd(), "client/src/uploads")
+
 // Multer this will store the image in memory and upload the image into the uplaod folder 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
@@ -37,28 +37,31 @@ const upload = multer({
 // adRouter.route("../client/src/pages/user-post")
 router.post("/", upload.single("productImage"), (req, res, next)=>{
     console.log(req.file);
-    const newAd = new Ad({
+    db.Ad.create({
         owner: req.body.owner ,
         productTitle:req.body.productTitle,
-        productImage: path.join( uploadDir, req.file.filename) ,
+       // productImage: path.join( uploadDir, req.file.filename) ,
+        productImage: req.file.filename,
         productDescription:req.body.productDescription ,
-        productDepartment:req.body.productDepartment,
-        productCost:req.body.productCost ,
-        locationCity:req.body.locationCity ,
         locationState:req.body.locationState ,
-        sellerContactName:req.body.sellerContactName ,
         sellerContactPhone: req.body.sellerContactPhone,
         sellerContactEmail: req.body.sellerContactEmail,
     })
-    newAd.save()
-    .then((res)=>{
+    // const newAd = new Ad({
+    //     owner: req.body.owner ,
+    //     productTitle:req.body.productTitle,
+    //     productImage: path.join( uploadDir, req.file.filename) ,
+    //     productDescription:req.body.productDescription ,
+    //     productDepartment: req.body.productDepartment,
+    //     productCost:req.body.productCost ,
+    //     locationCity:req.body.locationCity ,
+    //     locationState:req.body.locationState ,
+    //     sellerContactName:req.body.sellerContactName ,
+    //     sellerContactPhone: req.body.sellerContactPhone,
+    //     sellerContactEmail: req.body.sellerContactEmail,
+    // })
+    // newAd.save()
+    .then((results)=>{
         console.log(res);
-        // res.send(200).json({
-        //     success: true,
-        //     message: "Created Ad successfully"
-        // });
-        res.end()
-    })
-    .catch((err)=> next(err));
 })
   module.exports= router;
