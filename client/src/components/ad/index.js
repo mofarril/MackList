@@ -28,7 +28,7 @@ export function AdCard(props) {
 export function AdCard1(props) {
     return (
         <Wrapper>
-            <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
+            <div className="card-deck ml-2" style={styles.adCard} {...props}>
                 <div className="card">
                     <img src={props.image} className="card-img-top" alt={props.name} height = "250px" width = "350px"/>
                     <div className="card-body">
