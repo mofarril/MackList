@@ -96,7 +96,8 @@ class Navbar extends Component {
       <Wrapper>
         <div className="bg-pattern">
           <nav 
-          style = {this.mystyle} 
+          id="nav-style"
+          // style = {this.mystyle} 
           className="navbar navbar-dark">
           <img 
           height="100px"
@@ -104,14 +105,14 @@ class Navbar extends Component {
           src={okapi} 
           alt="okapi"/>
             <h1> <a 
-            style = {this.mystyle} 
+            // style = {this.mystyle} 
             className="navbar-brand" 
             href="/">Macklist
             </a> </h1>
             {loggedIn ?
-              <div >
+              <div id ="login-btn1">
                 <div  className="pos-f-t">
-                  <nav id="user-nav"className="navbar navbar bg-success">
+                  <nav className="navbar">
                     <span  className="mr-2">Welcome {user}! </span>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span className="navbar-toggler-icon"></span>
@@ -121,11 +122,11 @@ class Navbar extends Component {
                 </div>
               </div>
               :
-              <a href="/login" id ="login-btn"className="btn">Log In/Sign Up</a>}
+              <a href="/login" id ="login-btn" className="btn">Log In/Sign Up</a>}
           </nav>
           {loggedIn ?
             <div className="collapse" id="navbarToggleExternalContent">
-              <div className="bg-white p-4">
+              <div className="p-4 text-right">
                 <a className="text-dark h4" href="/user-post">My Profile</a><br />
                 <a className="text-dark h4" href="#" data-toggle="modal" data-target="#changeusername" onClick={this.clearError}>Change Username</a><br />
                 <a className="text-dark h4" href="#" data-toggle="modal" data-target="#changepassword" onClick={this.clearError}>Change Password</a><br />
@@ -159,9 +160,9 @@ class Navbar extends Component {
                         required
                         title="Username can only contain Uppercase, Lowercase or number and atleast 6 or more characters"
                     />
-                    <button type="submit" className="btn btn-success mb-2">Change Username</button>
+                    <button type="submit" className="btn btn-success mb-2" id="user-reset-btn">Change Username</button>
               <div>
-              <FormBtn data-dismiss="modal">Close</FormBtn>
+              <FormBtn data-dismiss="modal" id="close-btn1">Close</FormBtn>
               </div>
                 </form>
               </div>
@@ -193,9 +194,9 @@ class Navbar extends Component {
                         title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                         required
                     />
-                    <button type="submit" className="btn btn-success mb-2">Change Password</button>
+                    <button type="submit" className="btn btn-success mb-2" id="pw-reset-btn">Change Password</button>
               <div>
-              <FormBtn data-dismiss="modal">Close</FormBtn>
+              <FormBtn data-dismiss="modal" id="close-btn">Close</FormBtn>
               </div>
                 </form>
               </div>
