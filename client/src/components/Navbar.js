@@ -99,30 +99,35 @@ class Navbar extends Component {
           id="nav-style"
           // style = {this.mystyle} 
           className="navbar navbar-dark">
+            <div className="row w-100">
+              <div className="col-sm-2">
           <img 
           height="100px"
           width="90px"
           src={okapi} 
           alt="okapi"/>
+          </div>
+          <div className="col-sm-7">
             <h1> <a 
             // style = {this.mystyle} 
             className="navbar-brand" 
             href="/">Macklist
             </a> </h1>
+            </div>
+            <div className="col-sm-3 text-right pt-4">
             {loggedIn ?
               <div id ="login-btn1">
-                <div  className="pos-f-t">
-                  <nav className="navbar">
-                    <span  className="mr-2">Welcome {user}! </span>
+                <div>
+                    <span className="mr-2">Welcome {user}!</span>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span className="navbar-toggler-icon"></span>
                     </button>
-                  </nav>
-
                 </div>
               </div>
               :
               <a href="/login" id ="login-btn" className="btn">Log In/Sign Up</a>}
+              </div>
+              </div>
           </nav>
           {loggedIn ?
             <div className="collapse" id="navbarToggleExternalContent">

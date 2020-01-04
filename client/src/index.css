@@ -161,37 +161,7 @@ h3, .card-title {
     justify-content: space-around;
     align-content: space-between;
   }
-        /*not working*/
-    .card-text{
-    
-    height:45px;
-    width: 45px;
-    text-align: right;
-    padding-right: 10px;
-    padding-top: 10px;
-    border-radius: 5px;
-    border: 1px solid grey;  
-   
-  }
   
-  .card-text:hover{
-    z-index: 2;
-    display: block;
-    height:45px;
-    width: 45px;
-    text-align: right;
-    padding-right: 10px;
-    padding-top: 10px;
-    border-radius: 5px;
-    border: 1px solid grey;   
-  }
-    /*end of not working*/
-    /*card css*/
-   
-    #card-style{
-   
-     
-    }
 /*card/ad modal css*/
 
 .modal-header{ 
@@ -287,17 +257,17 @@ h1{
 }
 
 #login-btn1:hover{
-  background-color: rgb(216, 213, 213);
-  color:rgb(105, 182, 55);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* background-color: rgb(216, 213, 213); */
+  /* color:rgb(105, 182, 55); */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   border-radius: 5px;
     
 }
 #login-btn1{
   font-family: 'Cairo', sans-serif;
-  background-color: rgba(223, 223, 217, 0.151);
+  /* background-color: rgba(223, 223, 217, 0.151); */
   color: rgba(216, 213, 213);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   border-radius: 5px;
 
 }
@@ -396,7 +366,7 @@ h3, .card-title {
    
   }
   
-  .card-text:hover{
+  /* .card-text:hover{
     z-index: 2;
     display: block;
     height:45px;
@@ -406,14 +376,10 @@ h3, .card-title {
     padding-top: 10px;
     border-radius: 5px;
     border: 1px solid grey;   
-  }
+  } */
     /*end of not working*/
     /*card css*/
-   
-    #card-style{
-   
-     
-    }
+  
 /*card/ad modal css*/
 .modal-header{ 
   background-size: cover; 

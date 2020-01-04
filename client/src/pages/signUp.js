@@ -78,7 +78,7 @@ class Login extends Component {
     render() {
         return (
             <Wrapper>
-                <h2 className="text-center">SignUp to Macklist!</h2><br />
+                <h2 className="text-center pt-3">SignUp to Macklist!</h2><br />
                 <div className="mx-5">
                     <Col>
                         <form onSubmit={this.handleFormSubmit}>
