@@ -111,7 +111,7 @@ class Navbar extends Component {
             {loggedIn ?
               <div >
                 <div  className="pos-f-t">
-                  <nav className="navbar navbar bg-success">
+                  <nav id="user-nav"className="navbar navbar bg-success">
                     <span  className="mr-2">Welcome {user}! </span>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span className="navbar-toggler-icon"></span>
