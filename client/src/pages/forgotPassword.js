@@ -58,7 +58,7 @@ class ForgotPassword extends Component {
     render() {
         return (
             <Wrapper>
-                <h2 className="text-center">Forgot Password?</h2><br />
+                <h2 className="text-center pt-3">Forgot Password?</h2><br />
                 <h5 className="text-center">Please enter the email address associated to your account!</h5>
                 <div className="mx-5">
                     <Col>

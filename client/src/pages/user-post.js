@@ -104,7 +104,7 @@ class UserPost extends Component {
                     {loggedIn ?
                         <div>
                             <div className="text-center">
-                            <h3 className="text-center">My Posts</h3>
+                            <h3 className="text-center pt-3 pb-1">My Posts</h3>
                                 <button type="button" className="btn btn-success" id="create-post-btn" data-toggle="modal" data-target="#exampleModalLong">
                                     Create Post</button></div>
                             <div className="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -125,7 +125,7 @@ class UserPost extends Component {
                             
                             <h4>{this.state.message}</h4>
                         </div>
-                        : <h2 className="text-center">Please LogIn to use this page!</h2>}
+                        : <h2 className="text-center pt-3 pb-1">Please LogIn to use this page!</h2>}
                 </div>
                 <div>
                     {this.state.allposts.map(ele => {
