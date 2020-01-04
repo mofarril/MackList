@@ -14,7 +14,7 @@ export function AdCard(props) {
 
         <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
             <div className="card">
-                <img src={props.image} className="card-img-top" alt={props.name} height = "200px" width = "350px"/>
+                <img src={props.image} className="card-img-top my-3" alt={props.name} height = "200px" width = "350px"/>
                 <div className="card-body">
                     <h5 className="card-title">{props.name}</h5>
                     <p className="card-text font-weight-light">Price: {props.price}</p>
@@ -28,7 +28,7 @@ export function AdCard(props) {
 export function AdCard1(props) {
     return (
         <Wrapper>
-            <div className="card-deck ml-2 my-3" style={styles.adCard} {...props}>
+            <div className="card-deck ml-2" style={styles.adCard} {...props}>
                 <div className="card">
                     <img src={props.image} className="card-img-top" alt={props.name} height = "250px" width = "350px"/>
                     <div className="card-body">
