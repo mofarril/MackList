@@ -222,7 +222,7 @@ class Sidebar extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <nav className="nav flex-column bg-light" >
-                            <div className="btn btn-success" role="button" style={styles.width}>
+                            <div className="btn btn-dark" role="button" style={styles.width}>
                                 Search </div> </nav></div>
 
                     <div className="card-body row ml-3">
@@ -349,7 +349,7 @@ class Sidebar extends Component {
                                     )
                                 })}
 
-                                <button type="button" className="btn btn-success" data-dismiss="modal" data-target="#exampleModalLong">
+                                <button type="button" id="modal-submit-btn" className="btn btn-success" data-dismiss="modal" data-target="#exampleModalLong">
                                     Close</button></div>
                             {/* // <Form user={user} /> */}
                         </div>

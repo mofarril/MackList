@@ -230,7 +230,7 @@ class Form extends Component {
             title="Please enter numeric value"
           />
 
-          <button type="submit" className="btn btn-success">Submit</button>
+          <button type="submit" className="btn btn-success" id="login-page-btn">Submit</button>
           <p className="text-success">{this.state.message}</p>
         </form>
       </div>
