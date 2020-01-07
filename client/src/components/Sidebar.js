@@ -13,7 +13,8 @@ const styles = {
         "border": "1px solid black",
     },
     width: {
-        "width": "100%"
+        "width": "100%",
+        "font-size": "20px"
     },
 
 }
@@ -222,10 +223,10 @@ class Sidebar extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <nav className="nav flex-column bg-light" >
-                            <div className="btn btn-dark" role="button" style={styles.width}>
+                            <div className="btn btn-dark" id="login-page-btn" role="button" style={styles.width}>
                                 Search </div> </nav></div>
 
-                    <div className="card-body row ml-3">
+                    <div className="card-body row ml-3 bg-dark text-white">
                         <div className="form-group col-lg-3">
                             <label htmlFor="FormControlSelect">Department</label>
                             <input
@@ -291,13 +292,13 @@ class Sidebar extends Component {
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" onClick={this.lowTohigh}></input>
                                     <label className="form-check-label" htmlFor="exampleRadios1">
-                                        <a className="text-dark font-italic">Low-High</a>
+                                        <a className="text-white font-italic">Low-High</a>
                                     </label>
                                 </div>
                                 <div className="form-check col-lg-6">
                                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={this.highTolow}></input>
                                     <label className="form-check-label" htmlFor="exampleRadios2">
-                                        <a className="text-dark font-italic">High-Low</a>
+                                        <a className="text-white font-italic">High-Low</a>
                                     </label>
                                 </div>
                             </div>
