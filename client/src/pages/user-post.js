@@ -139,7 +139,7 @@ class UserPost extends Component {
                             >
                                 <button onClick={e => this.edit(ele._id, ele.productTitle, ele.productImage, ele.productDescription, ele.productCost)} data-toggle="modal"
                                     data-target="#editModal" className="btn btn-danger" id="edit-post-btn">Edit</button>
-                                <br /><button onClick={e => this.clicked(ele._id)} data-toggle="modal"
+                                <button onClick={e => this.clicked(ele._id)} data-toggle="modal"
                                     data-target="#deleteModal" className="btn btn-danger" id="delete-post-btn">Delete</button>
                             </AdCard1>
                         }
