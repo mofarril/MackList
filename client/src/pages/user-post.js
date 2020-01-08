@@ -103,8 +103,8 @@ class UserPost extends Component {
                     {loggedIn ?
                         <div>
                             <div className="text-center">
-                                <h1 >Welcome {user}!</h1>
-                                <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
+                            <h3 className="text-center pt-3 pb-1">My Posts</h3>
+                                <button type="button" className="btn btn-success" id="create-post-btn" data-toggle="modal" data-target="#exampleModalLong">
                                     Create Post</button></div>
                             <div className="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
@@ -121,10 +121,10 @@ class UserPost extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <br /><h3 className="text-center">My Posts</h3>
+                            
                             <h4>{this.state.message}</h4>
                         </div>
-                        : <h1 className="text-center">Please LogIn to use this page!</h1>}
+                        : <h2 className="text-center pt-3 pb-1">Please LogIn to use this page!</h2>}
                 </div>
                 <div>
                     {this.state.allposts.map(ele => {
@@ -137,9 +137,9 @@ class UserPost extends Component {
                                 image={ele.productImage}
                             >
                                 <button onClick={e => this.edit(ele._id, ele.productTitle, ele.productImage, ele.productDescription, ele.productCost)} data-toggle="modal"
-                                    data-target="#editModal" className="btn btn-danger">Edit</button>
-                                <br /><button onClick={e => this.clicked(ele._id)} data-toggle="modal"
-                                    data-target="#deleteModal" className="btn btn-danger">Delete</button>
+                                    data-target="#editModal" className="btn btn-danger" id="edit-post-btn">Edit</button>
+                                <button onClick={e => this.clicked(ele._id)} data-toggle="modal"
+                                    data-target="#deleteModal" className="btn btn-danger" id="delete-post-btn">Delete</button>
                             </AdCard1>
                         }
                     })}
@@ -165,7 +165,7 @@ class UserPost extends Component {
                                             <p><b>Image:</b><Input type="text" name="productImage" value={this.state.productImage} placeholder={ele.productImage} onChange={this.handleInputChange} /></p>
                                             <p><b>Description:</b><TextArea type="text" name="productDescription" value={this.state.productDescription} placeholder={ele.productDescription} onChange={this.handleInputChange} /></p>
                                             <p><b>Cost:</b><Input type="text" pattern="[0-9.]{1,}" name="productCost" value={this.state.productCost} placeholder={ele.productCost} onChange={this.handleInputChange} /></p>
-                                            <button type="submit" className="btn btn-success">Submit</button>
+                                            <button type="submit" className="btn btn-success" id="modal-submit-btn">Submit</button>
                                         </form>
                                         </div>
                             )
@@ -190,9 +190,9 @@ class UserPost extends Component {
                                 return (
                                     <div>
                                         <p>Are you sure you want to delete {ele.productTitle}?</p>
-                                        <button type="button" onClick={e => this.deleteAd(ele._id)} className="btn btn-success" data-toggle="modal" data-target="#deleteModal">
+                                        <button type="button" id="yes-btn" onClick={e => this.deleteAd(ele._id)} className="btn btn-success" data-toggle="modal" data-target="#deleteModal">
                                             Yes</button>
-                                        <button type="button" className="btn btn-danger ml-2" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" id="no-btn" className="btn btn-danger ml-2" data-dismiss="modal" aria-label="Close">
                                             No</button>
                                     </div>
                                 )
