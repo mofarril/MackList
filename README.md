@@ -22,6 +22,6 @@ Node JS, Express JS, React, MongoDB, Axios, Bootstrap, Passport JS, Nodemailer.
 Team Members:
 This app is part of a group project developed by 4 developers.
 Atif Rabbani
-Madison O'farrill
+Madison O'Farril
 Carlo Ortega
 Khiry Hill
