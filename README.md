@@ -2,7 +2,7 @@
 
 This is a shopping app like craigslist where customers can buy and sell products.
 
-[MackList](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+[MackList](client/src/macklist.PNG "MackList Home")
 
 ## OVERVIEW
 
