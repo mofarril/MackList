@@ -2,6 +2,8 @@
 
 This is a shopping app like craigslist where customers can buy and sell products.
 
+[MackList](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 ## OVERVIEW
 
 This is a Full Stack MERN app. We have used Node JS and Express for server side working and React for client side working. and MongoDB is being used as a database. We have created two different database User and Ad database. User database stores the username, email address and password and Ad database is storing title, image link, location, description and cost of product.
