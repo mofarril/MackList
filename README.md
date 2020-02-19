@@ -2,7 +2,7 @@
 
 This is a shopping app like craigslist where customers can buy and sell products.
 
-[MackList](client/src/macklist.PNG "MackList Home")
+
 
 ## OVERVIEW
 
