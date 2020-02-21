@@ -2,7 +2,7 @@
 
 This is a shopping app like craigslist where customers can buy and sell products.
 
-![](https://raw.githubusercontent.com/mofarril/MadList/master/client/src/macklist.PNG?token=AGG6PYRBLJMETWXXYDZI42C6J4YSU)
+![](https://github.com/mofarril/MadList/blob/master/client/src/macklist.PNG)
 
 ## OVERVIEW
 
@@ -15,9 +15,11 @@ User will navigate to the app and will see alll the available items to be sold. 
 Then if user wants to sell something they will have to login to the app. If they are not a memeber yet they can choose signup option that takes unique username, unique email and password. User will successfully signup if not already a member. If user is a member but forgets his password. They can click on forgot password and they will be sent a random 8 digit code on their email address, that becomes their new password and once the user is log in they can change password from change password option.
 Once user is logged in successfully, they can visit their profile. On profile page they will be welcomed with their username and they will see all the ads they have posted and they also have option to create new posts. Every post has an option to be edited and an option to delete the Ad.
 
-![](https://raw.githubusercontent.com/mofarril/MadList/master/client/src/myPosts.PNG?token=AGG6PYSCIDOIT45GBACGSUC6J42SK)
-![](https://raw.githubusercontent.com/mofarril/MadList/master/client/src/productModal.PNG?token=AGG6PYTMPULGUW2GFE5JVZS6J42TO)
-![](https://raw.githubusercontent.com/mofarril/MadList/master/client/src/login.PNG?token=AGG6PYTWSDAY6VNDSKD2HD26J42UA)
+![](https://github.com/mofarril/MadList/blob/master/client/src/login.PNG)
+
+![](https://github.com/mofarril/MadList/blob/master/client/src/myPosts.PNG)
+
+![](https://github.com/mofarril/MadList/blob/master/client/src/productModal.PNG)
 
 ## DEPLOYED VERSION LINKS
  * HEROKU Link: http://macklist.herokuapp.com/
