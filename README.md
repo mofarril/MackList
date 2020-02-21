@@ -2,7 +2,7 @@
 
 This is a shopping app like craigslist where customers can buy and sell products.
 
-![MackList](https://github.com/mofarril/MackList/client/src/macklist.PNG)
+![](https://raw.githubusercontent.com/mofarril/MadList/master/client/src/macklist.PNG?token=AGG6PYRBLJMETWXXYDZI42C6J4YSU)
 
 ## OVERVIEW
 
