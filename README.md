@@ -7,7 +7,7 @@ This is a shopping app like craigslist where customers can buy and sell products
 ## OVERVIEW
 
 This is a Full Stack MERN app. We have used Node JS and Express for server side working and React for client side working.MongoDB is being used as a database. We have created two different database User and Ad database. User database stores the username, email address and password and Ad database is storing title, image link, location, description and cost of product.
-We have used Nodemailer to implement the Forgot password functionality. We are using session and passport JS to implement user authentication. so that user can login and post and view Ads
+We have used Nodemailer to implement the Forgot password functionality. We are using session and passport JS to implement user authentication so that user can login and post and view Ads.
 
 ## HOW TO USE
 
